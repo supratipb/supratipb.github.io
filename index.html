@@ -621,13 +621,13 @@
 		function multiplyNode(node, count, deep) {
 
 			const fs = require('fs') 
-			console.log('hhhhhhhhhhhhhhhhhhhhh'); 
+			console.log('hhhhhhhhhhhhhhhhhhhhh'	); 
 			fs.readFile('data.txt', 'utf-8', (err, data) => { 
 				if (err) throw err; 
 				console.log(data); 
 			}) 
 			
-			for (var i = 0, copy; i < 2 - 1; i++) {
+			for (var i = 0, copy; i < count - 1; i++) {
 				copy = node.cloneNode(deep);
 				node.parentNode.insertBefore(copy, node);
 			}
