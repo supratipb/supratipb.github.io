@@ -5,19 +5,194 @@
 	<title> SUPRATIP BANERJEE </title>
 	<link rel="icon" href="files/icons/title_icon.png" type="image/x-icon">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			background-color: #f1f1f1;
+			padding: 0px;
+			font-family: Arial;
+		}
+
+		/* Center website */
+
+		.main {
+			max-width: 1300px;
+			margin: auto;
+		}
+
+		h1 {
+			font-size: 50px;
+			word-break: break-all;
+		}
+
+		.row {
+			margin: 0px 0px;
+		}
+
+		/* Add padding BETWEEN each column */
+
+		.row,
+		.row>.column {
+			padding: 12px;
+		}
+
+		/* Create three equal columns that floats next to each other */
+
+		.column {
+			float: left;
+			width: 33.33%;
+			display: none;
+			/* Hide all elements by default */
+		}
+
+		/* Clear floats after rows */
+
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		/* Content */
+
+		.content {
+			background-color: white;
+			padding: 8px;
+		}
+
+		/* The "show" class is added to the filtered elements */
+
+		.show {
+			display: block;
+		}
+
+		/* Style the buttons */
+
+		.btn {
+			border: none;
+			outline: none;
+			padding: 8px 10px;
+			background-color: white;
+			cursor: pointer;
+		}
+
+		.btn:hover {
+			background-color: #ddd;
+		}
+
+		.btn.active {
+			background-color: #666;
+			color: white;
+		}
+
+		.zoom:hover {
+			transform: scale(1.4);
+			/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+		}
+
+
+
+
+		.widgets_div {
+			border-bottom: thin #edf1f2 solid;
+			padding: 22.85px 0;
+			background-color: white;
+		}
+
+		.widgets_div .icon_div {
+			display: inline-block;
+			margin-left: 25px;
+			vertical-align: middle;
+		}
+
+		.widgets_div .icon_div span i {
+			font-size: 14px;
+		}
+
+		.widgets_div .text_div {
+			display: inline-block;
+			margin-left: -120px;			
+			vertical-align: middle;
+			width: 1020px;
+		}
+
+		.widgets_div .text_div span {
+			color: #58666e;
+			font-size: .8rem;
+		}
+		.small_text span{
+			color: #58666e;
+			font-size: .8rem;
+		}
+
+		.widgets_div .text_div span+span {
+			color: #747F85;
+			font-size: 11px;
+		}
+
+	    a { text-decoration: none; color: #58666e;}
+		
+		.flex {
+		  display: flex;
+		  justify-content: left;
+		}
+
+		.flex-item + .flex-item {
+		  margin-left: 10px;
+		}
+
+		.button {
+		  margin-top: 15px;
+		  background-color: #0066FF;
+		  border: none;
+		  color: white;
+		  padding: 10px 20px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  cursor: pointer;
+		}
+
+
+	</style>
 	
 	
     <!-- Global CSS -->
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">  
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
-    <!-- My CSS -->
-    <link rel="stylesheet" href="assets/supratip/css/supratip.css">  
 	
 	
+		
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-175660554-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-175660554-1');
+		(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-WPLRVV4');
+	</script>
+	<!-- End Google Tag Manager -->
+
+
 </head>
 
 <body>
+
 
 
     <header class="header">
@@ -59,30 +234,42 @@
 	<div class="main">
 
 	
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<br>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<br>
 		
+
+		
+
 	<div id="s">
 	
 		
 		<div class="widgets_div">
+		
 			<div class="icon_div">
 				<img src="files/pub_icons/devops-digest.jpg" style="width:50%"/>
 			</div>
 			
 			<div class="text_div">	
-				<span><b>DEVOPS digest</b></span><br><br>				
+				<span><b>DEVOPS digest</b></span><br><br>
+				<!--span class="small_text">DEVOPSdigest</span><br>
+				<span class="small_text">Issued Aug 2021</span><br><br-->
 				<span class="small_text">My response(s) are selected to be featured in published articles in DEVOPSdigest.</span><br><br>
 				<span class="small_text"><a href="https://www.devopsdigest.com/12-devsecops-trends-to-watch-right-now-part-2" target="_blank">DevSecOps Trend</a> | 
 			    	<a href="https://www.devopsdigest.com/11-predictions-for-the-future-of-observability" target="_blank">Observability Predictions</a></span>                         
+
 			</div>	
+
 		</div>
+
+
 				
 				
-		<div class="widgets_div">		
+		<div class="widgets_div">
+		
 			<div class="icon_div">
 				<img src="files/pub_icons/devops-com.png" style="width:50%"/>
-			</div>			
+			</div>
+			
 			<div class="text_div">	
 				<span><b>12 Ways to Bake Security Into a DevOps Transformation</b></span><br>
 				<span class="small_text">DevOps.com</span><br>
@@ -90,11 +277,14 @@
 				<span class="small_text">Shared my perspectives along with other DevOps Institute ambassadors, on the topic - Ways to Bake Security Into a DevOps 
 				Transformation, published as a blog on DevOps.com.</span><br><br>
 				<span class="small_text"><a href="https://devops.com/12-ways-to-bake-security-into-a-devops-transformation/" target="_blank">See Publication</a></span>
+
 			</div>	
+
 		</div>		
 		
 		
-				
+		
+		
 			<!-- END GRID -->
 		</div> <img
 			src="https://hitwebcounter.com/counter/counter.php?page=7542486&style=0008&nbdigits=4&type=page&initCount=0"
