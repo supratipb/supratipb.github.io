@@ -6,7 +6,156 @@
 	<link rel="icon" href="files/icons/title_icon.png" type="image/x-icon">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="files/css/default.css">  
+		body {
+			background-color: #f1f1f1;
+			padding: 0px;
+			font-family: Arial;
+		}
+
+		/* Center website */
+
+		.main {
+			max-width: 1300px;
+			margin: auto;
+		}
+
+		h1 {
+			font-size: 50px;
+			word-break: break-all;
+		}
+
+		.row {
+			margin: 0px 0px;
+		}
+
+		/* Add padding BETWEEN each column */
+
+		.row,
+		.row>.column {
+			padding: 12px;
+		}
+
+		/* Create three equal columns that floats next to each other */
+
+		.column {
+			float: left;
+			width: 33.33%;
+			display: none;
+			/* Hide all elements by default */
+		}
+
+		/* Clear floats after rows */
+
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		/* Content */
+
+		.content {
+			background-color: white;
+			padding: 8px;
+		}
+
+		/* The "show" class is added to the filtered elements */
+
+		.show {
+			display: block;
+		}
+
+		/* Style the buttons */
+
+		.btn {
+			border: none;
+			outline: none;
+			padding: 8px 10px;
+			background-color: white;
+			cursor: pointer;
+		}
+
+		.btn:hover {
+			background-color: #ddd;
+		}
+
+		.btn.active {
+			background-color: #666;
+			color: white;
+		}
+
+		.zoom:hover {
+			transform: scale(1.4);
+			/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+		}
+
+
+
+
+		.widgets_div {
+			border-bottom: thin #edf1f2 solid;
+			padding: 22.85px 0;
+			background-color: white;
+		}
+
+		.widgets_div .icon_div {
+			display: inline-block;
+			margin-left: 45px;
+			vertical-align: middle;
+		}
+
+		.widgets_div .icon_div span i {
+			font-size: 14px;
+		}
+
+		.widgets_div .text_div {
+			display: inline-block;
+			margin-left: -100px;			
+			vertical-align: middle;
+			width: 220px;
+		}
+
+		.widgets_div .text_div span {
+			color: #58666e;
+			font-size: .8rem;
+		}
+		.small_text span{
+			color: #58666e;
+			font-size: .8rem;
+		}
+
+		.widgets_div .text_div span+span {
+			color: #747F85;
+			font-size: 11px;
+		}
+
+	    a { text-decoration: none; color: #58666e;}
+		
+		.flex {
+		  display: flex;
+		  justify-content: left;
+		}
+
+		.flex-item + .flex-item {
+		  margin-left: 10px;
+		}
+
+		.button {
+		  margin-top: 15px;
+		  background-color: #0066FF;
+		  border: none;
+		  color: white;
+		  padding: 10px 20px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  cursor: pointer;
+		}
+
+
+	</style>
+	
 	<!-- Global CSS -->
 	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">  
 	<!-- Theme CSS -->  
