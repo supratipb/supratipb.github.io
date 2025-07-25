@@ -9,6 +9,16 @@
 /* ======= Base ======= */
 
 
+.certification {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+  font-family: sans-serif;
+}
+
+
 body {
 			background-color: #f1f1f1;
 			padding: 0px;
