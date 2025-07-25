@@ -40,10 +40,10 @@
 
 	
 <header class="header py-2 bg-light border-bottom">
-  <div class="container d-flex align-items-center justify-content-between flex-wrap gap-3">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap">
     
-    <!-- Profile Section: All in One Line -->
-    <div class="d-flex align-items-center flex-shrink-0 me-4">
+    <!-- Left: Profile + Name + Icons -->
+    <div class="d-flex align-items-center flex-shrink-1 me-3">
       <img src="assets/images/profile.png" alt="Supratip Banerjee" class="rounded-circle me-3" style="width: 60px; height: 60px;">
 
       <div class="d-flex flex-column me-3">
@@ -61,15 +61,8 @@
       </div>
     </div>
 
-    <!-- Summary -->
-    <div class="flex-grow-1 me-3" style="min-width: 300px; max-width: 700px;">
-      <p class="mb-0 small text-dark">
-        TOGAF 9 certified Principal Architect with 20 years of experience in digital transformation, cloud migration, application modernization, and hyper-automation. Proficient in Java, NoSQL/SQL, front-end, AWS, and DevOps. Advocate of microservices, DDD, and event-driven design. Speaker, writer, and thought leader.
-      </p>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="d-flex flex-wrap gap-2 flex-shrink-0">
+    <!-- Right: Navigation Buttons -->
+    <nav class="d-flex flex-wrap gap-2 ms-auto">
       <a href="index.html" class="btn btn-sm btn-outline-primary">Certification</a>
       <a href="comm.html" class="btn btn-sm btn-outline-primary">Community</a>
       <a href="publication.html" class="btn btn-sm btn-outline-primary">Publication</a>
@@ -78,7 +71,15 @@
     </nav>
 
   </div>
+
+  <!-- Optional Summary Row Below (if you want it included) -->
+  <div class="container mt-2">
+    <p class="mb-0 small text-dark">
+      TOGAF 9 certified Principal Architect with 20 years of experience in digital transformation, cloud migration, application modernization, and hyper-automation. Proficient in Java, NoSQL/SQL, front-end, AWS, and DevOps. Advocate of microservices, DDD, and event-driven design. Speaker, writer, and thought leader.
+    </p>
+  </div>
 </header>
+
 
 
 
