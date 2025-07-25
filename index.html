@@ -40,40 +40,46 @@
 
 	
 <header class="header py-2 bg-light border-bottom">
-  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap gap-3">
     
-    <!-- Profile Info -->
-    <div class="d-flex align-items-start flex-column flex-md-row">
-      <img src="assets/images/profile.png" alt="Supratip Banerjee" class="rounded-circle me-md-3 mb-2 mb-md-0" style="width: 60px; height: 60px;">
+    <!-- Profile Section: All in One Line -->
+    <div class="d-flex align-items-center flex-shrink-0 me-4">
+      <img src="assets/images/profile.png" alt="Supratip Banerjee" class="rounded-circle me-3" style="width: 60px; height: 60px;">
+
+      <div class="d-flex flex-column me-3">
+        <strong class="mb-0">Supratip Banerjee</strong>
+        <small class="text-muted">Solutions Architect</small>
+      </div>
 
       <div>
-        <h1 class="h6 mb-0">Supratip Banerjee</h1>
-        <p class="text-muted mb-1 small">Solutions Architect</p>
-        <div class="mb-2">
-          <a href="https://www.linkedin.com/in/supratipb/" target="_blank" class="text-secondary me-2" aria-label="LinkedIn">
-            <i class="fa fa-linkedin fa-lg"></i>
-          </a>
-          <a href="https://twitter.com/supratip" target="_blank" class="text-secondary" aria-label="Twitter">
-            <i class="fa fa-twitter fa-lg"></i>
-          </a>
-        </div>
-        <p class="small text-dark mb-0" style="max-width: 650px;">
-          TOGAF 9 certified Principal Architect with 20 years of experience in digital transformation, cloud migration, application modernization, and hyper-automation. Proficient in Java, NoSQL/SQL, front-end, AWS, and DevOps. Advocate of microservices, DDD, and event-driven design. Speaker, writer, and thought leader.
-        </p>
+        <a href="https://www.linkedin.com/in/supratipb/" target="_blank" class="text-secondary me-2" aria-label="LinkedIn">
+          <i class="fa fa-linkedin fa-lg"></i>
+        </a>
+        <a href="https://twitter.com/supratip" target="_blank" class="text-secondary" aria-label="Twitter">
+          <i class="fa fa-twitter fa-lg"></i>
+        </a>
       </div>
     </div>
 
+    <!-- Summary -->
+    <div class="flex-grow-1 me-3" style="min-width: 300px; max-width: 700px;">
+      <p class="mb-0 small text-dark">
+        TOGAF 9 certified Principal Architect with 20 years of experience in digital transformation, cloud migration, application modernization, and hyper-automation. Proficient in Java, NoSQL/SQL, front-end, AWS, and DevOps. Advocate of microservices, DDD, and event-driven design. Speaker, writer, and thought leader.
+      </p>
+    </div>
+
     <!-- Navigation -->
-    <nav class="nav mt-3 mt-md-0 flex-wrap justify-content-start justify-content-md-end">
-      <a href="index.html" class="btn btn-sm btn-outline-primary me-2 mb-2">Certification</a>
-      <a href="comm.html" class="btn btn-sm btn-outline-primary me-2 mb-2">Community</a>
-      <a href="publication.html" class="btn btn-sm btn-outline-primary me-2 mb-2">Publication</a>
-      <a href="speaker.html" class="btn btn-sm btn-outline-primary me-2 mb-2">Speaker</a>
-      <a href="blog.html" class="btn btn-sm btn-outline-primary mb-2">Blog</a>
+    <nav class="d-flex flex-wrap gap-2 flex-shrink-0">
+      <a href="index.html" class="btn btn-sm btn-outline-primary">Certification</a>
+      <a href="comm.html" class="btn btn-sm btn-outline-primary">Community</a>
+      <a href="publication.html" class="btn btn-sm btn-outline-primary">Publication</a>
+      <a href="speaker.html" class="btn btn-sm btn-outline-primary">Speaker</a>
+      <a href="blog.html" class="btn btn-sm btn-outline-primary">Blog</a>
     </nav>
 
   </div>
 </header>
+
 
 
 
