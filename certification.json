@@ -1,0 +1,82 @@
+[
+  {
+    "title": "AWS Certified Solutions Architect – Associate",
+    "issuer": "AWS",
+    "issueDate": "Jan 2024",
+    "expiryDate": "Jan 2027",
+    "logo": "assets/aws_saa.png",
+    "expired": false
+  },
+  {
+    "title": "GCP Associate Cloud Engineer",
+    "issuer": "Google Cloud",
+    "issueDate": "May 2021",
+    "expiryDate": "May 2024",
+    "logo": "assets/gcp.png",
+    "expired": true
+  },
+  {
+    "title": "Microsoft Certified: Azure Solutions Architect Expert",
+    "issuer": "Microsoft",
+    "issueDate": "Oct 2022",
+    "expiryDate": "Oct 2025",
+    "logo": "assets/azure_architect.png",
+    "expired": false
+  },
+  {
+    "title": "Microsoft Certified: Security, Compliance, and Identity Fundamentals",
+    "issuer": "Microsoft",
+    "issueDate": "Aug 2023",
+    "expiryDate": "Aug 2026",
+    "logo": "assets/azure_security.png",
+    "expired": false
+  },
+  {
+    "title": "Certified Ethical Hacker (CEH)",
+    "issuer": "EC-Council",
+    "issueDate": "Sep 2020",
+    "expiryDate": "Sep 2023",
+    "logo": "assets/ceh.png",
+    "expired": true
+  },
+  {
+    "title": "AWS Certified Machine Learning – Specialty",
+    "issuer": "AWS",
+    "issueDate": "Jun 2025",
+    "expiryDate": "Jun 2028",
+    "logo": "assets/aws_ml.png",
+    "expired": false
+  },
+  {
+    "title": "Microsoft Certified: Azure AI Fundamentals",
+    "issuer": "Microsoft",
+    "issueDate": "Apr 2024",
+    "expiryDate": "Apr 2027",
+    "logo": "assets/azure_ai.png",
+    "expired": false
+  },
+  {
+    "title": "TOGAF 9 Certified",
+    "issuer": "The Open Group",
+    "issueDate": "Jul 2019",
+    "expiryDate": "N/A",
+    "logo": "assets/togaf.png",
+    "expired": false
+  },
+  {
+    "title": "Snowflake SnowPro Core Certification",
+    "issuer": "Snowflake",
+    "issueDate": "May 2024",
+    "expiryDate": "May 2026",
+    "logo": "assets/snowflake.png",
+    "expired": false
+  },
+  {
+    "title": "Databricks Lakehouse Fundamentals",
+    "issuer": "Databricks",
+    "issueDate": "Mar 2024",
+    "expiryDate": "Mar 2026",
+    "logo": "assets/databricks.png",
+    "expired": false
+  }
+]
