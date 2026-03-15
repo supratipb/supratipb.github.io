@@ -296,17 +296,21 @@
       background: var(--surface);
       border-radius: var(--radius);
       border: 1px solid var(--border);
-      padding: 20px 24px;
       box-shadow: var(--shadow-sm);
+      overflow: hidden;
     }
     .filter-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
       gap: 8px;
+      padding: 14px 20px;
+      cursor: pointer;
+      user-select: none;
+      transition: background var(--transition);
     }
+    .filter-top:hover { background: var(--surface-2); }
+    .filter-top-left { display: flex; align-items: center; gap: 10px; }
     .filter-label {
       font-size: 11px;
       font-family: var(--font-mono);
@@ -314,14 +318,46 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
+    .filter-active-pill {
+      font-size: 11px; font-family: var(--font-mono); font-weight: 600;
+      color: var(--accent); background: var(--accent-dim);
+      border: 1px solid rgba(59,110,248,0.2);
+      padding: 2px 9px; border-radius: 20px;
+      transition: opacity var(--transition);
+    }
+    .filter-active-pill.hidden { display: none; }
+    .filter-top-right { display: flex; align-items: center; gap: 12px; }
     .cert-count {
       font-size: 12px;
       font-family: var(--font-mono);
       color: var(--text-muted);
     }
-    .cert-count span {
+    .cert-count span { color: var(--accent); font-weight: 600; }
+    .filter-chevron {
+      width: 24px; height: 24px; border-radius: var(--radius-xs);
+      background: var(--surface-3); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 11px; flex-shrink: 0;
+      transition: transform var(--transition), background var(--transition);
+    }
+    .filter-section.open .filter-chevron {
+      transform: rotate(180deg);
+      background: var(--accent-dim);
       color: var(--accent);
-      font-weight: 600;
+      border-color: rgba(59,110,248,0.2);
+    }
+
+    /* Collapsible body */
+    .filter-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      border-top: 0px solid var(--border-light);
+    }
+    .filter-section.open .filter-body {
+      max-height: 300px;
+      padding: 14px 20px 18px;
+      border-top-width: 1px;
     }
     .filter-bar {
       display: flex;
@@ -527,7 +563,7 @@
       .hero-stats { gap: 16px; }
       .cert-grid { grid-template-columns: 1fr; }
       .container { padding: 0 20px; }
-      .filter-section { padding: 16px 18px; }
+      .filter-section { } /* padding handled by inner elements */
     }
     @media (max-width: 480px) {
       .hero-inner { flex-direction: column; align-items: flex-start; }
@@ -550,7 +586,7 @@
     </div>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/supratipb/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://medium.com/@supratip-banerjee" target="_blank" aria-label="Medium"><i class="fab fa-medium"></i></a>
+      <a href="https://medium.com/@supratipb" target="_blank" aria-label="Medium"><i class="fab fa-medium"></i></a>
       <a href="https://dev.to/supratipb" target="_blank" aria-label="dev.to"><i class="fab fa-dev"></i></a>
     </div>
     <nav class="site-nav" aria-label="Main navigation">
@@ -566,7 +602,8 @@
     </button>
   </div>
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-    <a href="index.html" class="nav-link active">Certifications</a>
+    <a href="index.html" class="nav-link">About</a>
+    <a href="cert.html" class="nav-link active">Certifications</a>
     <a href="comm.html" class="nav-link">Community</a>
     <a href="publication.html" class="nav-link">Publications</a>
     <a href="speaker.html" class="nav-link">Speaker</a>
@@ -590,12 +627,20 @@
   <div class="container">
 
     <!-- Filter Bar -->
-    <section class="filter-section" aria-label="Filter certifications">
-      <div class="filter-top">
-        <div class="filter-label">Filter by category</div>
-        <div class="cert-count" id="certCount"></div>
+    <section class="filter-section" id="filterSection" aria-label="Filter certifications">
+      <div class="filter-top" id="filterToggle" role="button" aria-expanded="false" aria-controls="filterBody">
+        <div class="filter-top-left">
+          <div class="filter-label">Filter by category</div>
+          <span class="filter-active-pill hidden" id="filterActivePill"></span>
+        </div>
+        <div class="filter-top-right">
+          <div class="cert-count" id="certCount"></div>
+          <div class="filter-chevron"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
       </div>
-      <div class="filter-bar" id="filterBar" role="group" aria-label="Certification filters"></div>
+      <div class="filter-body" id="filterBody">
+        <div class="filter-bar" id="filterBar" role="group" aria-label="Certification filters"></div>
+      </div>
     </section>
 
     <!-- Cert Groups rendered by JS -->
@@ -1238,7 +1283,21 @@ function buildFilters() {
     if (!btn) return;
     bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    render(btn.dataset.filter);
+    const filter = btn.dataset.filter;
+    render(filter);
+
+    // Update active pill in header
+    const pill = document.getElementById('filterActivePill');
+    if (filter === 'all') {
+      pill.classList.add('hidden');
+    } else {
+      pill.textContent = filter;
+      pill.classList.remove('hidden');
+    }
+
+    // Close the panel after selecting
+    filterSection.classList.remove('open');
+    filterToggle.setAttribute('aria-expanded', false);
   });
 }
 
@@ -1247,6 +1306,14 @@ document.getElementById('hamburgerBtn').addEventListener('click', function () {
   const nav = document.getElementById('mobileNav');
   const open = nav.classList.toggle('open');
   this.setAttribute('aria-expanded', open);
+});
+
+// Filter collapse toggle
+const filterSection = document.getElementById('filterSection');
+const filterToggle  = document.getElementById('filterToggle');
+filterToggle.addEventListener('click', () => {
+  const isOpen = filterSection.classList.toggle('open');
+  filterToggle.setAttribute('aria-expanded', isOpen);
 });
 
 // Init
