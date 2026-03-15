@@ -1,245 +1,369 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<title> SUPRATIP BANERJEE </title>
-	<link rel="icon" href="files/icons/title_icon.png" type="image/x-icon">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link rel="stylesheet" href="files/css/default.css">  
-	
-		<style>
-		.widgets_div .text_div {
-			display: inline-block;
-			margin-left: -180px;	
-			margin-bottom : 10px;			
-			vertical-align: middle;
-			width: 350px;
-		}
-		
-		
-	</style>
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">  
-    <!-- Theme CSS -->  
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
-		
-	
-</head>
+  <meta charset="UTF-8" />
+  <title>Supratip Banerjee · Speaker</title>
+  <link rel="icon" href="files/icons/title_icon.png" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <style>
+    :root {
+      --bg:             #f0f2f7;
+      --surface:        #ffffff;
+      --surface-2:      #f7f8fb;
+      --surface-3:      #eef0f6;
+      --border:         #e3e7f0;
+      --border-light:   #eef0f6;
+      --accent:         #3b6ef8;
+      --accent-dim:     rgba(59,110,248,0.07);
+      --accent-dim2:    rgba(59,110,248,0.13);
+      --purple:         #7c3aed;
+      --purple-dim:     rgba(124,58,237,0.07);
+      --text-primary:   #0f1623;
+      --text-secondary: #4b5568;
+      --text-muted:     #94a0b8;
+      --shadow-sm:      0 1px 3px rgba(15,22,35,0.06), 0 1px 2px rgba(15,22,35,0.04);
+      --shadow-hover:   0 8px 28px rgba(59,110,248,0.13), 0 2px 8px rgba(15,22,35,0.06);
+      --radius:         14px;
+      --radius-sm:      8px;
+      --radius-xs:      6px;
+      --font-body:      'DM Sans', sans-serif;
+      --font-mono:      'DM Mono', monospace;
+      --transition:     0.18s ease;
+      --max-w:          1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text-primary); font-family: var(--font-body); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; transition: all var(--transition); }
+    a:hover { opacity: 0.8; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+
+    /* ══ HEADER ══ */
+    .site-header {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 0 var(--border), var(--shadow-sm);
+    }
+    .header-inner { display: flex; align-items: center; gap: 18px; padding: 14px 28px; max-width: var(--max-w); margin: 0 auto; }
+    .profile-avatar-wrap { position: relative; flex-shrink: 0; }
+    .profile-avatar-wrap::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--purple)); z-index: 0; }
+    .profile-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2.5px solid #fff; position: relative; z-index: 1; display: block; }
+    .profile-info { flex: 1; min-width: 0; }
+    .profile-name { font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .profile-title { font-size: 11.5px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.03em; }
+    .social-links { display: flex; gap: 8px; align-items: center; }
+    .social-links a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: var(--radius-xs); border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); font-size: 13px; transition: all var(--transition); }
+    .social-links a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); opacity: 1; transform: translateY(-1px); }
+    .site-nav { display: flex; gap: 2px; align-items: center; }
+    .nav-link { font-size: 13px; font-weight: 500; color: var(--text-secondary); padding: 7px 14px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--transition); white-space: nowrap; letter-spacing: -0.01em; }
+    .nav-link:hover { color: var(--text-primary); background: var(--surface-3); opacity: 1; }
+    .nav-link.active { color: var(--accent); background: var(--accent-dim); border-color: rgba(59,110,248,0.2); font-weight: 600; opacity: 1; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; transition: all var(--transition); }
+    .mobile-nav { display: none; background: var(--surface); border-top: 1px solid var(--border-light); padding: 10px 20px 14px; flex-wrap: wrap; gap: 4px; }
+    .mobile-nav.open { display: flex; }
+
+    /* ══ HERO ══ */
+    .hero-strip {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b6ef8 50%, #7c3aed 100%);
+      padding: 36px 0 32px; position: relative; overflow: hidden;
+    }
+    .hero-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    }
+    .hero-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .hero-eyebrow { font-size: 11px; font-family: var(--font-mono); color: rgba(255,255,255,0.6); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+    .hero-title { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 6px; }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.65); }
+    .hero-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 26px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.02em; }
+    .stat-label { font-size: 10.5px; color: rgba(255,255,255,0.55); font-family: var(--font-mono); letter-spacing: 0.05em; margin-top: 3px; text-transform: uppercase; }
+
+    /* ══ MAIN ══ */
+    .main { padding: 40px 0 80px; }
+
+    /* ══ SPEAKER GRID ══ */
+    .speaker-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* ══ SPEAKER CARD ══ */
+    .speaker-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+      animation: fadeUp 0.35s ease both;
+      position: relative;
+    }
+    .speaker-card::after {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .speaker-card:hover { border-color: rgba(59,110,248,0.25); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+    .speaker-card:hover::after { opacity: 1; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Thumbnail */
+    .speaker-thumb {
+      width: 100%; aspect-ratio: 16/7; overflow: hidden;
+      background: var(--surface-3);
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .speaker-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .speaker-card:hover .speaker-thumb img { transform: scale(1.03); }
+
+    /* Card body */
+    .speaker-card-body { padding: 20px 22px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+    .speaker-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .speaker-venue {
+      font-size: 11.5px; font-weight: 600; color: var(--accent);
+      font-family: var(--font-mono);
+    }
+    .speaker-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-muted); flex-shrink: 0; }
+    .speaker-date {
+      font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);
+    }
+    .speaker-type {
+      font-size: 10.5px; font-family: var(--font-mono);
+      padding: 2px 8px; border-radius: 20px;
+      background: var(--purple-dim); border: 1px solid rgba(124,58,237,0.15);
+      color: var(--purple); margin-left: auto;
+    }
+
+    .speaker-title { font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; line-height: 1.35; }
+
+    .speaker-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; flex: 1; }
+
+    /* Card footer */
+    .speaker-card-footer { padding: 14px 22px; border-top: 1px solid var(--border-light); }
+    .speaker-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      background: var(--accent-dim); border: 1px solid rgba(59,110,248,0.2);
+      padding: 7px 16px; border-radius: 20px; transition: all var(--transition);
+    }
+    .speaker-link i { font-size: 10px; }
+    .speaker-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); opacity: 1; }
+
+    /* ══ FOOTER ══ */
+    .site-footer { border-top: 1px solid var(--border); padding: 28px; text-align: center; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); background: var(--surface); }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 768px) {
+      .header-inner { padding: 12px 20px; gap: 12px; }
+      .site-nav { display: none; }
+      .hamburger { display: flex; }
+      .hero-strip { padding: 28px 0; }
+      .hero-title { font-size: 22px; }
+      .container { padding: 0 20px; }
+      .speaker-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
 <body>
 
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="profile-avatar-wrap">
+      <img class="profile-avatar" src="assets/images/profile.png" alt="Supratip Banerjee" />
+    </div>
+    <div class="profile-info">
+      <div class="profile-name">Supratip Banerjee</div>
+      <div class="profile-title">Principal Architect · CitiusTech &nbsp;|&nbsp; 18 yrs · Cloud, Microservices, DDD</div>
+    </div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/supratipb/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://twitter.com/supratip" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-link">About</a>
+      <a href="cert.html" class="nav-link">Certifications</a>
+      <a href="comm.html" class="nav-link">Community</a>
+      <a href="publication.html" class="nav-link">Publications</a>
+      <a href="speaker.html" class="nav-link active">Speaker</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="nav-link">About</a>
+    <a href="cert.html" class="nav-link">Certifications</a>
+    <a href="comm.html" class="nav-link">Community</a>
+    <a href="publication.html" class="nav-link">Publications</a>
+    <a href="speaker.html" class="nav-link active">Speaker</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+</header>
 
+<!-- ── Hero ── -->
+<div class="hero-strip">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Webinars &amp; Sessions</div>
+      <h1 class="hero-title">Speaker</h1>
+      <div class="hero-sub">Talks on Cloud, DevOps, Observability, AI &amp; modern engineering practices</div>
+    </div>
+    <div class="hero-stats" id="heroStats"></div>
+  </div>
+</div>
 
-    <header class="header">
-        <div class="container" >                       
-            <img class="profile-image img-responsive pull-left" src="assets/images/profile.png" alt="" />
-            <div class="profile-content pull-left">
-                <h1 class="name">Supratip Banerjee</h1>
-                <h2 class="desc">Solutions Architect</h2>   
-                <ul class="social list-inline">
-                    <li><a href="https://www.linkedin.com/in/supratipb/" target="_blank"><i class="fa fa-linkedin"></i></a></li>                   
-                    <!--li><a href="#"><i class="fa fa-google-plus"></i></a></li-->
-                    <li><a href="https://twitter.com/supratip" target="_blank""><i class="fa fa-twitter"></i></a></li>
-                    <!--li><a href="#"><i class="fa fa-github-alt"></i></a></li-->                  
-                    <!--li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li-->                 
-                </ul> 
+<!-- ── Main ── -->
+<main class="main">
+  <div class="container">
+    <div class="speaker-grid" id="speakerGrid"></div>
+  </div>
+</main>
 
-            </div>
+<footer class="site-footer">
+  &copy; <span id="year"></span> Supratip Banerjee &nbsp;·&nbsp; Principal Architect · CitiusTech
+</footer>
 
-			<div class="flex pull-right">
-				<!--form method="get" action="index.html"><button class="btn" type="submit">About</button></form>&nbsp;&nbsp;-->
-				<form method="get" action="index.html">	<button class="btn" type="submit">Certification</button></form>&nbsp;&nbsp;
-				<form method="get" action="comm.html">	<button class="btn" type="submit">Community</button></form>&nbsp;&nbsp;
-				<form method="get" action="publication.html">	<button class="btn" type="submit">Publication</button></form>&nbsp;&nbsp;
-			    	<form method="get" action="speaker.html">	<button class="btn" type="submit">Speaker</button></form>&nbsp;&nbsp;
-				<form method="get" action="blog.html">	<button class="btn" type="submit">Blog</button></form>&nbsp;&nbsp;
-			</div>
-			
-            <!--a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a-->              
+<script>
+// ── DATA ── add new talks here — most recent first
+const TALKS = [
+  {
+    title:  "The Role of AI in Code Generation",
+    venue:  "DevOps Institute – SKILup Day",
+    date:   "July 2024",
+    type:   "Webinar",
+    icon:   "files/speaker_icons/DevOpsIns-AI.jpg",
+    desc:   "Examine how AI-driven code generation is revolutionizing DevOps practices, reducing the time required for coding, and enabling faster iterations and deployments.",
+    url:    "https://www.techstrongevents.com/skilup-day-modernizing-devops-and-itil/home?ref=speakers-linkedin&utm_source=hs&utm_medium=referral&utm_campaign=speaker-linkedin&utm_id=speaker-linkedin",
+    delay:  0,
+  },
+  {
+    title:  "Introduction to Observability",
+    venue:  "DevOps Institute – SKILup Day",
+    date:   "June 2023",
+    type:   "Webinar",
+    icon:   "files/speaker_icons/SKILup-Day-June-23.png",
+    desc:   "Observability is a concept that has gained significant importance in the field of software engineering and operations.",
+    url:    "https://www.skilupdays.io/en/hall#vf-webinar-detail",
+    delay:  60,
+  },
+  {
+    title:  "DevOps Best Practices for Distributed Applications",
+    venue:  "DevOps Institute – SKILup Hour",
+    date:   "April 2023",
+    type:   "Webinar",
+    icon:   "files/speaker_icons/SKILup_hour.jpeg",
+    desc:   "How to rearchitect monolithic applications for distributed computing and CI/CD to reach higher software delivery and operations performance.",
+    url:    "https://skilupit.thinkific.com/courses/technical-aspects-ci-cd-2023",
+    delay:  120,
+  },
+  {
+    title:  "AWS DevOps Services",
+    venue:  "DevOps Institute – AWS Webinar",
+    date:   "May 2022",
+    type:   "Session",
+    icon:   "files/speaker_icons/devops-ins.png",
+    desc:   "Conducted sessions on DevOps concepts and AWS DevOps services as part of DevOps Institute and Amazon Web Services (AWS) Community Building.",
+    url:    "https://www.youtube.com/watch?v=ZClIGFcrFM4&ab_channel=NexGenOps",
+    delay:  180,
+  },
+  {
+    title:  "Chaos Engineering and AWS FIS",
+    venue:  "Whizlabs",
+    date:   "September 2021",
+    type:   "Webinar",
+    icon:   "files/speaker_icons/whizlabs.jfif",
+    desc:   "Speaker for Whizlabs 100 Days of Cloud initiative — talked about Chaos Engineering and Amazon Web Services Fault Injection Simulator.",
+    url:    "https://www.youtube.com/watch?v=7-Hy2Q4-aCg&ab_channel=Whizlabs",
+    delay:  240,
+  },
+  {
+    title:  "Cloud Basics and AWS",
+    venue:  "AWS Community Builder",
+    date:   "August 2020",
+    type:   "Session",
+    icon:   "files/speaker_icons/aws.jpg",
+    desc:   "As part of AWS Community Builder knowledge sharing, hosted a session on cloud core concepts and AWS major services.",
+    url:    "https://youtu.be/UfhLJy3yl4U",
+    delay:  300,
+  },
+];
+
+function renderTalks() {
+  // Hero stats
+  const venues = new Set(TALKS.map(t => t.venue)).size;
+  document.getElementById('heroStats').innerHTML = `
+    <div class="stat-item">
+      <div class="stat-number">${TALKS.length}</div>
+      <div class="stat-label">Talks</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">${venues}</div>
+      <div class="stat-label">Venues</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">2020</div>
+      <div class="stat-label">Since</div>
+    </div>`;
+
+  // Cards
+  document.getElementById('speakerGrid').innerHTML = TALKS.map(t => `
+    <div class="speaker-card" style="animation-delay:${t.delay}ms">
+      <div class="speaker-thumb">
+        <img src="${t.icon}" alt="${t.title}" />
+      </div>
+      <div class="speaker-card-body">
+        <div class="speaker-meta">
+          <span class="speaker-venue">${t.venue}</span>
+          <span class="speaker-dot"></span>
+          <span class="speaker-date">${t.date}</span>
+          <span class="speaker-type">${t.type}</span>
         </div>
-    </header>
+        <div class="speaker-title">${t.title}</div>
+        <div class="speaker-desc">${t.desc}</div>
+      </div>
+      <div class="speaker-card-footer">
+        <a class="speaker-link" href="${t.url}" target="_blank" rel="noopener">
+          Watch ${t.type} <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>`).join('');
+}
 
-
-	<!-- MAIN (Center website) -->
-	<div class="main">
-	
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-		<br>
-					
-
-	<div id="s">
-			
-		
-		<div class="widgets_div">
-
-
-
-			<div class="icon_div">
-				<img src="files/speaker_icons/DevOpsIns-AI.jpg" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>The Role of AI in Code Generation</b></span><br>
-				<span class="small_text">DevOps Institute - SKILup Day</span><br>
-				<span class="small_text">July 2024</span><br><br>
-				<span class="small_text">Examine how AI-driven code generation is revolutionizing DevOps practices, reducing the time required for coding, and enabling faster iterations and deployments. </span><br><br>
-				<span class="small_text"><a href="https://www.techstrongevents.com/skilup-day-modernizing-devops-and-itil/home?ref=speakers-linkedin&utm_source=hs&utm_medium=referral&utm_campaign=speaker-linkedin&utm_id=speaker-linkedin" target="_blank">Webinar</a></span> 
-				
-			</div>	
-
-			
-			<div class="icon_div">
-				<img src="files/speaker_icons/SKILup-Day-June-23.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>Introduction to Observability</b></span><br>
-				<span class="small_text">DevOps Institute - SKILup Day</span><br>
-				<span class="small_text">June 2023</span><br><br>
-				<span class="small_text">Observability is a concept that has gained significant importance in the field of software engineering and operations. </span><br><br>
-				<span class="small_text"><a href="https://www.skilupdays.io/en/hall#vf-webinar-detail" target="_blank">Webinar</a></span> 
-				
-			</div>	
-
-
-
-			<br/><br/><br/>
-			    
-			<div class="icon_div">
-				<img src="files/speaker_icons/SKILup_hour.jpeg" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>DevOps best practises for Distributed Application</b></span><br>
-				<span class="small_text">DevOps Institute - SKILup Hour</span><br>
-				<span class="small_text">April 2023</span><br><br>
-				<span class="small_text">How to rearchitect your monolithic applications for distributed computing and CI/CD to reach higher software 
-				delivery and operations performance.. </span><br><br>
-				<span class="small_text"><a href="https://skilupit.thinkific.com/courses/technical-aspects-ci-cd-2023" target="_blank">Webinar</a></span> 
-				
-			</div>	
-			    
-			
-			<div class="icon_div">
-				<img src="files/speaker_icons/devops-ins.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>AWS DevOps services</b></span><br>
-				<span class="small_text">DevOps Institute - AWS Webinar</span><br>
-				<span class="small_text">May 2022</span><br><br>
-				<span class="small_text">Conducted sessions on DevOps concepts and AWS DevOps services as part of DevOps Institute and Amazon Web Services (AWS) Community Building. </span><br><br>
-				<span class="small_text"><a href="https://www.youtube.com/watch?v=ZClIGFcrFM4&ab_channel=NexGenOps" target="_blank">Session</a></span> 
-				
-			</div>	
-
-
-
-			
-
-			<br/><br/><br/>
-			    
-			<div class="icon_div">
-				<img src="files/speaker_icons/whizlabs.jfif" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>Chaos Engineering and AWS FIS</b></span><br>
-				<span class="small_text">Whizlabs</span><br>
-				<span class="small_text">Sept 2021</span><br><br>
-				<span class="small_text">I was glad to be the speaker for Whizlabs for their 100 days of cloud initiative. 
-			    	I talked about 'Chaos Engineering and Amazon Web Services (AWS) Fault Injection Simulator'. </span><br><br>
-				<span class="small_text"><a href="https://www.youtube.com/watch?v=7-Hy2Q4-aCg&ab_channel=Whizlabs" target="_blank">Webinar</a></span> 
-				
-			</div>	
-			
-		
-			<div class="icon_div">
-				<img src="files/speaker_icons/aws.jpg" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>Cloud basics and AWS</b></span><br>
-				<span class="small_text">AWS Community Builder</span><br>
-				<span class="small_text">Aug 2020</span><br><br>
-				<span class="small_text">As part of AWS community builder knowledge sharing hosted this session on Cloud core concepts and AWS's major services</span><br><br>
-				<span class="small_text"><a href="https://youtu.be/UfhLJy3yl4U" target="_blank">Session</a></span> 
-				
-			</div>
-
-			
-	</div>
-		
-		<!-- END GRID -->
-		</div> <img
-			src="https://hitwebcounter.com/counter/counter.php?page=7542486&style=0008&nbdigits=4&type=page&initCount=0"
-			title="Web Counter" Alt="counter free" border="0">
-		<!-- END MAIN -->
-	</div>
-	<script>
-	
-		function multiplyNode(node, count, deep) {
-
-			const fs = require('fs') 
-			console.log('hhhhhhhhhhhhhhhhhhhhh'	); 
-			fs.readFile('data.txt', 'utf-8', (err, data) => { 
-				if (err) throw err; 
-				console.log(data); 
-			}) 
-			
-			for (var i = 0, copy; i < count - 1; i++) {
-				copy = node.cloneNode(deep);
-				node.parentNode.insertBefore(copy, node);
-			}
-		}
-
-		multiplyNode(document.getElementById("demo"), 1, true);	
-		filterSelection("all")
-
-		function filterSelection(c) {
-			var x, i;
-			x = document.getElementsByClassName("column");
-			if (c == "all") c = "";
-			for (i = 0; i < x.length; i++) {
-				w3RemoveClass(x[i], "show");
-				if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-			}
-		}
-
-		function w3AddClass(element, name) {
-			var i, arr1, arr2;
-			arr1 = element.className.split(" ");
-			arr2 = name.split(" ");
-			for (i = 0; i < arr2.length; i++) {
-				if (arr1.indexOf(arr2[i]) == -1) {
-					element.className += " " + arr2[i];
-				}
-			}
-		}
-
-		function w3RemoveClass(element, name) {
-			var i, arr1, arr2;
-			arr1 = element.className.split(" ");
-			arr2 = name.split(" ");
-			for (i = 0; i < arr2.length; i++) {
-				while (arr1.indexOf(arr2[i]) > -1) {
-					arr1.splice(arr1.indexOf(arr2[i]), 1);
-				}
-			}
-			element.className = arr1.join(" ");
-		}
-		// Add active class to the current button (highlight it)
-		var btnContainer = document.getElementById("myBtnContainer");
-		var btns = btnContainer.getElementsByClassName("btn");
-		for (var i = 0; i < btns.length; i++) {
-			btns[i].addEventListener("click", function () {
-				var current = document.getElementsByClassName("active");
-				current[0].className = current[0].className.replace(" active", "");
-				this.className += " active";
-			});
-		}
-	</script>
+document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('hamburgerBtn').addEventListener('click', function () {
+  const nav = document.getElementById('mobileNav');
+  this.setAttribute('aria-expanded', nav.classList.toggle('open'));
+});
+renderTalks();
+</script>
 </body>
-
 </html>
