@@ -1,274 +1,340 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Supratip Banerjee · Publications</title>
+  <link rel="icon" href="files/icons/title_icon.png" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-	<head>
-		<title> SUPRATIP BANERJEE </title>
-		<link rel="icon" href="files/icons/title_icon.png"
-			type="image/x-icon">
-			<meta name="viewport"
-				content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg:             #f0f2f7;
+      --surface:        #ffffff;
+      --surface-2:      #f7f8fb;
+      --surface-3:      #eef0f6;
+      --border:         #e3e7f0;
+      --border-light:   #eef0f6;
+      --accent:         #3b6ef8;
+      --accent-dim:     rgba(59,110,248,0.07);
+      --accent-dim2:    rgba(59,110,248,0.13);
+      --purple:         #7c3aed;
+      --text-primary:   #0f1623;
+      --text-secondary: #4b5568;
+      --text-muted:     #94a0b8;
+      --shadow-sm:      0 1px 3px rgba(15,22,35,0.06), 0 1px 2px rgba(15,22,35,0.04);
+      --shadow-hover:   0 8px 28px rgba(59,110,248,0.13), 0 2px 8px rgba(15,22,35,0.06);
+      --radius:         14px;
+      --radius-sm:      8px;
+      --radius-xs:      6px;
+      --font-body:      'DM Sans', sans-serif;
+      --font-mono:      'DM Mono', monospace;
+      --transition:     0.18s ease;
+      --max-w:          1120px;
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text-primary); font-family: var(--font-body); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; transition: all var(--transition); }
+    a:hover { opacity: 0.8; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
 
-				<link rel="stylesheet" href="files/css/default.css">
-					<!-- Global CSS -->
-					<link rel="stylesheet"
-						href="assets/plugins/bootstrap/css/bootstrap.min.css">
-						<!-- Theme CSS -->
-						<link id="theme-style" rel="stylesheet"
-							href="assets/css/styles.css">
+    /* ══ HEADER ══ */
+    .site-header {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 0 var(--border), var(--shadow-sm);
+    }
+    .header-inner { display: flex; align-items: center; gap: 18px; padding: 14px 28px; max-width: var(--max-w); margin: 0 auto; }
+    .profile-avatar-wrap { position: relative; flex-shrink: 0; }
+    .profile-avatar-wrap::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--purple)); z-index: 0; }
+    .profile-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2.5px solid #fff; position: relative; z-index: 1; display: block; }
+    .profile-info { flex: 1; min-width: 0; }
+    .profile-name { font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .profile-title { font-size: 11.5px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.03em; }
+    .social-links { display: flex; gap: 8px; align-items: center; }
+    .social-links a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: var(--radius-xs); border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); font-size: 13px; transition: all var(--transition); }
+    .social-links a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); opacity: 1; transform: translateY(-1px); }
+    .site-nav { display: flex; gap: 2px; align-items: center; }
+    .nav-link { font-size: 13px; font-weight: 500; color: var(--text-secondary); padding: 7px 14px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--transition); white-space: nowrap; letter-spacing: -0.01em; }
+    .nav-link:hover { color: var(--text-primary); background: var(--surface-3); opacity: 1; }
+    .nav-link.active { color: var(--accent); background: var(--accent-dim); border-color: rgba(59,110,248,0.2); font-weight: 600; opacity: 1; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; transition: all var(--transition); }
+    .mobile-nav { display: none; background: var(--surface); border-top: 1px solid var(--border-light); padding: 10px 20px 14px; flex-wrap: wrap; gap: 4px; }
+    .mobile-nav.open { display: flex; }
 
+    /* ══ HERO ══ */
+    .hero-strip {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b6ef8 50%, #7c3aed 100%);
+      padding: 36px 0 32px; position: relative; overflow: hidden;
+    }
+    .hero-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    }
+    .hero-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .hero-eyebrow { font-size: 11px; font-family: var(--font-mono); color: rgba(255,255,255,0.6); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+    .hero-title { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 6px; }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.65); }
+    .hero-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 26px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.02em; }
+    .stat-label { font-size: 10.5px; color: rgba(255,255,255,0.55); font-family: var(--font-mono); letter-spacing: 0.05em; margin-top: 3px; text-transform: uppercase; }
 
-	</head>
+    /* ══ MAIN ══ */
+    .main { padding: 40px 0 80px; }
 
-	<body>
+    /* ══ PUB GRID ══ */
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 20px;
+    }
 
-		<header class="header">
-			<div class="container">
-				<img class="profile-image img-responsive pull-left"
-					src="assets/images/profile.png" alt="" />
-				<div class="profile-content pull-left">
-					<h1 class="name">Supratip Banerjee</h1>
-					<h2 class="desc">Solutions Architect</h2>
-					<ul class="social list-inline">
-						<li>
-							<a href="https://www.linkedin.com/in/supratipb/"
-								target="_blank">
-								<i class="fa fa-linkedin"></i>
-							</a>
-						</li>
-						<!--li><a href="#"><i class="fa fa-google-plus"></i></a></li -->
-						<li>
-							<a href="https://twitter.com/supratip" target="_blank" ">
-								<i class="fa fa-twitter"></i>
-							</a>
-						</li>
-						<!--li><a href="#"><i class="fa fa-github-alt"></i></a></li -->
-						<!--li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li -->
-					</ul>
+    /* ══ PUB CARD ══ */
+    .pub-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+      animation: fadeUp 0.35s ease both;
+      position: relative;
+    }
+    .pub-card::after {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .pub-card:hover { border-color: rgba(59,110,248,0.25); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+    .pub-card:hover::after { opacity: 1; }
 
-				</div>
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-				<div class="flex pull-right">
-					<!--form method="get" action="index.html"><button class="btn" type="submit">About</button></form>&nbsp;&nbsp; -->
-					<form method="get" action="index.html">
-						<button class="btn" type="submit">Certification</button>
-					</form>&nbsp;&nbsp;
-					<form method="get" action="comm.html">
-						<button class="btn" type="submit">Community</button>
-					</form>&nbsp;&nbsp;
-					<form method="get" action="publication.html">
-						<button class="btn" type="submit">Publication</button>
-					</form>&nbsp;&nbsp;
-					<form method="get" action="speaker.html">
-						<button class="btn" type="submit">Speaker</button>
-					</form>&nbsp;&nbsp;
-					<form method="get" action="blog.html">
-						<button class="btn" type="submit">Blog</button>
-					</form>&nbsp;&nbsp;
-				</div>
+    /* Card header */
+    .pub-card-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .pub-logo {
+      width: 60px; height: 60px; border-radius: var(--radius-sm);
+      background: var(--surface-2); border: 1px solid var(--border-light);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .pub-logo img { width: 46px; height: 46px; object-fit: contain; }
+    .pub-header-text { flex: 1; min-width: 0; }
+    .pub-title { font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; margin-bottom: 4px; }
+    .pub-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
-				<!--a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" 
-					target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a -->
-			</div>
-		</header>
+    /* Articles list */
+    .pub-articles { padding: 16px 24px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .articles-label {
+      font-size: 10.5px; font-family: var(--font-mono); letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;
+    }
+    .article-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      background: var(--surface-2); border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+    .article-item:hover { border-color: rgba(59,110,248,0.25); background: var(--accent-dim); }
+    .article-item:hover .article-title { color: var(--accent); }
+    .article-icon { color: var(--text-muted); font-size: 11px; flex-shrink: 0; transition: color var(--transition); }
+    .article-item:hover .article-icon { color: var(--accent); }
+    .article-title { font-size: 13px; font-weight: 500; color: var(--text-secondary); line-height: 1.4; transition: color var(--transition); }
 
+    /* ══ FOOTER ══ */
+    .site-footer { border-top: 1px solid var(--border); padding: 28px; text-align: center; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); background: var(--surface); }
 
-		<!-- MAIN (Center website) -->
-		<div class="main">
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 768px) {
+      .header-inner { padding: 12px 20px; gap: 12px; }
+      .site-nav { display: none; }
+      .hamburger { display: flex; }
+      .hero-strip { padding: 28px 0; }
+      .hero-title { font-size: 22px; }
+      .container { padding: 0 20px; }
+      .pub-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
 
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="profile-avatar-wrap">
+      <img class="profile-avatar" src="assets/images/profile.png" alt="Supratip Banerjee" />
+    </div>
+    <div class="profile-info">
+      <div class="profile-name">Supratip Banerjee</div>
+      <div class="profile-title">Principal Architect · CitiusTech &nbsp;|&nbsp; 18 yrs · Cloud, Microservices, DDD</div>
+    </div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/supratipb/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://twitter.com/supratip" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-link">About</a>
+      <a href="cert.html" class="nav-link">Certifications</a>
+      <a href="comm.html" class="nav-link">Community</a>
+      <a href="publication.html" class="nav-link active">Publications</a>
+      <a href="speaker.html" class="nav-link">Speaker</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="nav-link">About</a>
+    <a href="cert.html" class="nav-link">Certifications</a>
+    <a href="comm.html" class="nav-link">Community</a>
+    <a href="publication.html" class="nav-link active">Publications</a>
+    <a href="speaker.html" class="nav-link">Speaker</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+</header>
 
-			<link
-				href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-				rel="stylesheet"
-				integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-				crossorigin="anonymous">
-				<br>
+<!-- ── Hero ── -->
+<div class="hero-strip">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Thought Leadership</div>
+      <h1 class="hero-title">Publications</h1>
+      <div class="hero-sub">Featured responses &amp; articles in leading DevOps &amp; engineering publications</div>
+    </div>
+    <div class="hero-stats" id="heroStats"></div>
+  </div>
+</div>
 
+<!-- ── Main ── -->
+<main class="main">
+  <div class="container">
+    <div class="pub-grid" id="pubGrid"></div>
+  </div>
+</main>
 
+<footer class="site-footer">
+  &copy; <span id="year"></span> Supratip Banerjee &nbsp;·&nbsp; Principal Architect · CitiusTech
+</footer>
 
+<script>
+// ── DATA ── add more publications or articles here
+const PUBLICATIONS = [
+  {
+    name:  "DEVOPS digest",
+    icon:  "files/pub_icons/devops-digest.jpg",
+    desc:  "DEVOPSdigest is an online publication and blog covering DevOps and related technologies. Selected responses featured in published articles.",
+    articles: [
+      { title: "DevSecOps Trend",                        url: "https://www.devopsdigest.com/12-devsecops-trends-to-watch-right-now-part-2" },
+      { title: "Observability Predictions",              url: "https://www.devopsdigest.com/11-predictions-for-the-future-of-observability" },
+      { title: "Container Orchestration Challenges",     url: "https://www.devopsdigest.com/switching-to-a-container-based-application-architecture-not-so-fast" },
+      { title: "SRE Top Technical Skills",               url: "https://www.devopsdigest.com/the-top-technical-skills-you-need-to-be-an-sre-in-2022" },
+    ],
+    delay: 0,
+  },
+  {
+    name:  "DevOps.com",
+    icon:  "files/pub_icons/devops-com.png",
+    desc:  "DevOps.com has the largest collection of original content related to DevOps on the web. Selected responses featured in published articles.",
+    articles: [
+      { title: "Security in DevOps Transformation",      url: "https://devops.com/12-ways-to-bake-security-into-a-devops-transformation/" },
+      { title: "Benefit of Observability for SRE",       url: "https://devops.com/the-key-benefits-of-observability-for-sres/" },
+      { title: "Container Orchestration Security",       url: "https://devops.com/4-container-orchestration-security-concerns" },
+    ],
+    delay: 60,
+  },
+  {
+    name:  "TechBeacon",
+    icon:  "files/pub_icons/techbeacon-1.png",
+    desc:  "TechBeacon is an information hub for DevOps, IT and security professionals seeking guidance to real business challenges. Selected responses featured in published articles.",
+    articles: [
+      { title: "Improve IT Observability",               url: "https://techbeacon.com/app-dev-testing/how-improve-your-it-observability-systems" },
+      { title: "Container Orchestration Challenges",     url: "https://techbeacon.com/enterprise-it/3-container-orchestration-challenges-tackle-head" },
+    ],
+    delay: 120,
+  },
+  {
+    name:  "The Enterprisers Project",
+    icon:  "files/pub_icons/enterprise-project-logo.jpg",
+    desc:  "The Enterprisers Project is an online publication and community helping CIOs and IT leaders solve problems. Selected responses featured in published articles.",
+    articles: [
+      { title: "Monitoring vs. Observability",           url: "https://enterprisersproject.com/article/2021/9/devops-monitoring-vs-observability" },
+      { title: "Container Strategy",                     url: "https://enterprisersproject.com/article/2021/11/container-success-3-key-skills" },
+      { title: "Why SRE Role Is In Demand",              url: "https://enterprisersproject.com/article/2022/2/8-reasons-site-reliability-engineer-one-most-demand-jobs-2022" },
+    ],
+    delay: 180,
+  },
+];
 
-					<div id="s">
-					
-					
-					
-					
-					
+function renderPublications() {
+  // Hero stats
+  const totalArticles = PUBLICATIONS.reduce((sum, p) => sum + p.articles.length, 0);
+  document.getElementById('heroStats').innerHTML = `
+    <div class="stat-item">
+      <div class="stat-number">${PUBLICATIONS.length}</div>
+      <div class="stat-label">Publications</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">${totalArticles}</div>
+      <div class="stat-label">Articles</div>
+    </div>`;
 
+  // Cards
+  document.getElementById('pubGrid').innerHTML = PUBLICATIONS.map(p => {
+    const articles = p.articles.map(a => `
+      <a class="article-item" href="${a.url}" target="_blank" rel="noopener">
+        <i class="fa-solid fa-arrow-up-right-from-square article-icon"></i>
+        <span class="article-title">${a.title}</span>
+      </a>`).join('');
 
+    return `
+      <div class="pub-card" style="animation-delay:${p.delay}ms">
+        <div class="pub-card-header">
+          <div class="pub-logo">
+            <img src="${p.icon}" alt="${p.name}" />
+          </div>
+          <div class="pub-header-text">
+            <div class="pub-title">${p.name}</div>
+            <div class="pub-desc">${p.desc}</div>
+          </div>
+        </div>
+        <div class="pub-articles">
+          <div class="articles-label">Featured Articles</div>
+          ${articles}
+        </div>
+      </div>`;
+  }).join('');
+}
 
-						<div class="widgets_div">
-
-							<div class="icon_div">
-								<img src="files/pub_icons/devops-digest.jpg"
-									style="width:50%" />
-							</div>
-
-							<div class="text_div">
-								<span>
-									<b>DEVOPS digest</b>
-								</span>
-								<br>
-									<br>
-										<!--span class="small_text">DEVOPSdigest</span><br> <span class="small_text">Issued 
-											Aug 2021</span><br><br -->
-										<span class="small_text">DEVOPSdigest is an online publication and
-											blog that covers DevOps and related technologies and topics.
-											My response(s) are selected to be featured in published
-											articles in DevOpS Digest.</span>
-										<br>
-											<br>
-												<span class="small_text">
-													<a
-														href="https://www.devopsdigest.com/12-devsecops-trends-to-watch-right-now-part-2"
-														target="_blank">DevSecOps Trend</a>
-													|
-													<a
-														href="https://www.devopsdigest.com/11-predictions-for-the-future-of-observability"
-														target="_blank">Observability Predictions</a>
-													|
-													<a
-														href="https://www.devopsdigest.com/switching-to-a-container-based-application-architecture-not-so-fast"
-														target="_blank">Container Orchestration Challenges</a>
-													|
-													<a
-														href="https://www.devopsdigest.com/the-top-technical-skills-you-need-to-be-an-sre-in-2022"
-														target="_blank">SRE top technical skills</a>
-												</span>
-
-							</div>
-
-						</div>
-						
-						
-
-
-
-
-						<div class="widgets_div">
-
-							<div class="icon_div">
-								<img src="files/pub_icons/devops-com.png" style="width:50%" />
-							</div>
-
-							<div class="text_div">
-								<span>
-									<b>DevOps.com
-								</span>
-							</b>
-								<br>
-									<br>
-										<span class="small_text">DevOps.com has the largest collection of
-											original content related to DevOps on the web and one of the
-											top result for DevOps-related search terms.
-											My response(s) are selected to be featured in published
-											articles in DevOps.com.</span>
-										<br>
-											<br>
-												<span class="small_text">
-													<a
-														href="https://devops.com/12-ways-to-bake-security-into-a-devops-transformation/"
-														target="_blank">Security in DevOps Transformation</a>
-													|
-													<a
-														href="https://devops.com/the-key-benefits-of-observability-for-sres/"
-														target="_blank">Benefit of Observability for SRE</a>
-													|
-													<a
-														href="https://devops.com/4-container-orchestration-security-concerns"
-														target="_blank">Container Orchestration Security Concerns</a>
-												</span>
-
-							</div>
-
-						</div>
-
-
-						<div class="widgets_div">
-
-							<div class="icon_div">
-								<img src="files/pub_icons/techbeacon-1.png"
-									style="width:50%" />
-							</div>
-
-							<div class="text_div">
-								<span>
-									<b>TechBeacon
-								</span>
-							</b>
-								<br>
-									<br>
-										<span class="small_text">TechBeacon is an information hub for DevOps,
-											IT and security professionals seeking guidance to real
-											business challenges.
-											My response(s) are selected to be featured in published
-											articles in TechBeacon.</span>
-										<br>
-											<br>
-												<span class="small_text">
-													<a
-														href="https://techbeacon.com/app-dev-testing/how-improve-your-it-observability-systems"
-														target="_blank">Improve Observability</a>
-													|
-													<a
-														href="https://techbeacon.com/enterprise-it/3-container-orchestration-challenges-tackle-head"
-														target="_blank">Container orchestration challenge</a>
-												</span>
-
-							</div>
-
-						</div>
-
-
-						<div class="widgets_div">
-
-							<div class="icon_div">
-								<img src="files/pub_icons/enterprise-project-logo.jpg"
-									style="width:50%" />
-							</div>
-
-							<div class="text_div">
-								<span>
-									<b>The Enterprisers Project
-								</span>
-							</b>
-								<br>
-									<br>
-										<span class="small_text">The Enterprisers Project is an online
-											publication and community helping CIOs and IT leaders solve
-											problems.
-											My response(s) are selected to be featured in published
-											articles in The Enterprisers Project.</span>
-										<br>
-											<br>
-												<span class="small_text">
-													<a
-														href="https://enterprisersproject.com/article/2021/9/devops-monitoring-vs-observability"
-														target="_blank">Monitoring vs. Observability</a>
-													|
-													<a
-														href="https://enterprisersproject.com/article/2021/11/container-success-3-key-skills"
-														target="_blank">Container Strategy</a>
-													|
-													<a
-														href="https://enterprisersproject.com/article/2022/2/8-reasons-site-reliability-engineer-one-most-demand-jobs-2022"
-														target="_blank">Why SRE role is in demand</a>
-												</span>
-
-							</div>
-
-						</div>
-
-
-
-
-						<!-- END GRID -->
-					</div>
-					<img
-						src="https://hitwebcounter.com/counter/counter.php?page=7542486&style=0008&nbdigits=4&type=page&initCount=0"
-						title="Web Counter" Alt="counter free" border="0">
-						<!-- END MAIN -->
-		</div>
-
-	</body>
-
+document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('hamburgerBtn').addEventListener('click', function () {
+  const nav = document.getElementById('mobileNav');
+  this.setAttribute('aria-expanded', nav.classList.toggle('open'));
+});
+renderPublications();
+</script>
+</body>
 </html>
