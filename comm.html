@@ -1,181 +1,352 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<title> SUPRATIP BANERJEE </title>
-	<link rel="icon" href="files/icons/title_icon.png" type="image/x-icon">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Supratip Banerjee · Community</title>
+  <link rel="icon" href="files/icons/title_icon.png" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <style>
+    :root {
+      --bg:             #f0f2f7;
+      --surface:        #ffffff;
+      --surface-2:      #f7f8fb;
+      --surface-3:      #eef0f6;
+      --border:         #e3e7f0;
+      --border-light:   #eef0f6;
+      --accent:         #3b6ef8;
+      --accent-dim:     rgba(59,110,248,0.07);
+      --accent-dim2:    rgba(59,110,248,0.13);
+      --purple:         #7c3aed;
+      --green:          #059669;
+      --green-dim:      rgba(5,150,105,0.08);
+      --text-primary:   #0f1623;
+      --text-secondary: #4b5568;
+      --text-muted:     #94a0b8;
+      --shadow-sm:      0 1px 3px rgba(15,22,35,0.06), 0 1px 2px rgba(15,22,35,0.04);
+      --shadow-hover:   0 8px 28px rgba(59,110,248,0.13), 0 2px 8px rgba(15,22,35,0.06);
+      --radius:         14px;
+      --radius-sm:      8px;
+      --radius-xs:      6px;
+      --font-body:      'DM Sans', sans-serif;
+      --font-mono:      'DM Mono', monospace;
+      --transition:     0.18s ease;
+      --max-w:          1120px;
+    }
 
-	<link rel="stylesheet" href="files/css/default.css">  
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">  
-    <!-- Theme CSS -->  
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
-	
-			
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text-primary); font-family: var(--font-body); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; transition: all var(--transition); }
+    a:hover { opacity: 0.8; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+
+    /* ══ HEADER ══ */
+    .site-header {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 0 var(--border), var(--shadow-sm);
+    }
+    .header-inner { display: flex; align-items: center; gap: 18px; padding: 14px 28px; max-width: var(--max-w); margin: 0 auto; }
+    .profile-avatar-wrap { position: relative; flex-shrink: 0; }
+    .profile-avatar-wrap::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--purple)); z-index: 0; }
+    .profile-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2.5px solid #fff; position: relative; z-index: 1; display: block; }
+    .profile-info { flex: 1; min-width: 0; }
+    .profile-name { font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .profile-title { font-size: 11.5px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.03em; }
+    .social-links { display: flex; gap: 8px; align-items: center; }
+    .social-links a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: var(--radius-xs); border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); font-size: 13px; transition: all var(--transition); }
+    .social-links a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); opacity: 1; transform: translateY(-1px); }
+    .site-nav { display: flex; gap: 2px; align-items: center; }
+    .nav-link { font-size: 13px; font-weight: 500; color: var(--text-secondary); padding: 7px 14px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--transition); white-space: nowrap; letter-spacing: -0.01em; }
+    .nav-link:hover { color: var(--text-primary); background: var(--surface-3); opacity: 1; }
+    .nav-link.active { color: var(--accent); background: var(--accent-dim); border-color: rgba(59,110,248,0.2); font-weight: 600; opacity: 1; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; transition: all var(--transition); }
+    .mobile-nav { display: none; background: var(--surface); border-top: 1px solid var(--border-light); padding: 10px 20px 14px; flex-wrap: wrap; gap: 4px; }
+    .mobile-nav.open { display: flex; }
+
+    /* ══ HERO ══ */
+    .hero-strip {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b6ef8 50%, #7c3aed 100%);
+      padding: 36px 0 32px; position: relative; overflow: hidden;
+    }
+    .hero-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    }
+    .hero-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .hero-eyebrow { font-size: 11px; font-family: var(--font-mono); color: rgba(255,255,255,0.6); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+    .hero-title { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 6px; }
+    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.65); }
+    .hero-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 26px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.02em; }
+    .stat-label { font-size: 10.5px; color: rgba(255,255,255,0.55); font-family: var(--font-mono); letter-spacing: 0.05em; margin-top: 3px; text-transform: uppercase; }
+
+    /* ══ MAIN ══ */
+    .main { padding: 40px 0 80px; }
+
+    /* ══ COMMUNITY GRID ══ */
+    .comm-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 20px;
+    }
+
+    /* ══ COMMUNITY CARD ══ */
+    .comm-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+      animation: fadeUp 0.35s ease both;
+      position: relative;
+    }
+    .comm-card::after {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .comm-card:hover { border-color: rgba(59,110,248,0.25); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+    .comm-card:hover::after { opacity: 1; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Card header row */
+    .comm-card-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .comm-logo {
+      width: 60px; height: 60px; border-radius: var(--radius-sm);
+      background: var(--surface-2); border: 1px solid var(--border-light);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .comm-logo img { width: 44px; height: 44px; object-fit: contain; }
+    .comm-header-text { flex: 1; min-width: 0; }
+    .comm-title { font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; margin-bottom: 3px; }
+    .comm-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .comm-org { font-size: 12px; font-weight: 600; color: var(--accent); font-family: var(--font-mono); }
+    .comm-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-muted); }
+    .comm-since { font-size: 11.5px; color: var(--text-muted); font-family: var(--font-mono); }
+
+    /* Active badge */
+    .comm-active-badge {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 11px; font-family: var(--font-mono); font-weight: 500;
+      color: var(--green); background: var(--green-dim);
+      border: 1px solid rgba(5,150,105,0.2);
+      padding: 4px 10px; border-radius: 20px; flex-shrink: 0;
+    }
+    .comm-active-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    /* Card body */
+    .comm-card-body { padding: 20px 24px; flex: 1; }
+    .comm-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* Card footer */
+    .comm-card-footer {
+      padding: 14px 24px; border-top: 1px solid var(--border-light);
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .comm-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      background: var(--accent-dim); border: 1px solid rgba(59,110,248,0.2);
+      padding: 7px 16px; border-radius: 20px; transition: all var(--transition);
+    }
+    .comm-link i { font-size: 10px; }
+    .comm-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); opacity: 1; }
+    .comm-link-secondary {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 500; color: var(--text-secondary);
+      background: var(--surface-2); border: 1px solid var(--border);
+      padding: 7px 16px; border-radius: 20px; transition: all var(--transition);
+    }
+    .comm-link-secondary i { font-size: 10px; }
+    .comm-link-secondary:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); opacity: 1; }
+
+    /* ══ FOOTER ══ */
+    .site-footer { border-top: 1px solid var(--border); padding: 28px; text-align: center; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); background: var(--surface); }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 768px) {
+      .header-inner { padding: 12px 20px; gap: 12px; }
+      .site-nav { display: none; }
+      .hamburger { display: flex; }
+      .hero-strip { padding: 28px 0; }
+      .hero-title { font-size: 22px; }
+      .container { padding: 0 20px; }
+      .comm-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-inner { flex-direction: column; align-items: flex-start; }
+      .comm-card-header { flex-wrap: wrap; }
+    }
+  </style>
 </head>
-
 <body>
 
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="profile-avatar-wrap">
+      <img class="profile-avatar" src="assets/images/profile.png" alt="Supratip Banerjee" />
+    </div>
+    <div class="profile-info">
+      <div class="profile-name">Supratip Banerjee</div>
+      <div class="profile-title">Principal Architect · CitiusTech &nbsp;|&nbsp; 18 yrs · Cloud, Microservices, DDD</div>
+    </div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/supratipb/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://twitter.com/supratip" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-link">About</a>
+      <a href="cert.html" class="nav-link">Certifications</a>
+      <a href="comm.html" class="nav-link active">Community</a>
+      <a href="publication.html" class="nav-link">Publications</a>
+      <a href="speaker.html" class="nav-link">Speaker</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="nav-link">About</a>
+    <a href="cert.html" class="nav-link">Certifications</a>
+    <a href="comm.html" class="nav-link active">Community</a>
+    <a href="publication.html" class="nav-link">Publications</a>
+    <a href="speaker.html" class="nav-link">Speaker</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+</header>
 
+<!-- ── Hero ── -->
+<div class="hero-strip">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Open Source &amp; Community</div>
+      <h1 class="hero-title">Community</h1>
+      <div class="hero-sub">Contributing to the global tech community through mentorship, knowledge sharing &amp; advocacy</div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Roles</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">2020</div>
+        <div class="stat-label">Active Since</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <header class="header">
-        <div class="container" >                       
-            <img class="profile-image img-responsive pull-left" src="assets/images/profile.png" alt="" />
-            <div class="profile-content pull-left">
-                <h1 class="name">Supratip Banerjee</h1>
-                <h2 class="desc">Solutions Architect</h2>   
-                <ul class="social list-inline">
-                    <li><a href="https://www.linkedin.com/in/supratipb/" target="_blank"><i class="fa fa-linkedin"></i></a></li>                   
-                    <!--li><a href="#"><i class="fa fa-google-plus"></i></a></li-->
-                    <li><a href="https://twitter.com/supratip" target="_blank""><i class="fa fa-twitter"></i></a></li>
-                    <!--li><a href="#"><i class="fa fa-github-alt"></i></a></li-->                  
-                    <!--li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li-->                 
-                </ul> 
+<!-- ── Main ── -->
+<main class="main">
+  <div class="container">
+    <div class="comm-grid" id="commGrid"></div>
+  </div>
+</main>
 
+<footer class="site-footer">
+  &copy; <span id="year"></span> Supratip Banerjee &nbsp;·&nbsp; Principal Architect · CitiusTech
+</footer>
+
+<script>
+// ── DATA ── add more community roles here
+const COMMUNITY = [
+  {
+    title:  "AWS Community Builder",
+    org:    "AWS",
+    since:  "Since June 2020",
+    active: true,
+    icon:   "files/comm_icons/acb.png",
+    desc:   "The AWS Community Builders program offers technical resources, mentorship, and networking opportunities to AWS enthusiasts and emerging thought leaders who are passionate about sharing knowledge and connecting with the technical community.",
+    links: [
+      { label: "Credential", url: "https://tinyurl.com/9xcn3bfp", primary: true },
+      { label: "Activity",   url: "https://dev.to/supratipb",     primary: false },
+    ],
+    delay: 0,
+  },
+  {
+    title:  "DevOps Institute Ambassador",
+    org:    "DevOps Institute",
+    since:  "Since July 2021",
+    active: true,
+    icon:   "files/comm_icons/devops-ins.jpg",
+    desc:   "The DevOps Institute Ambassadors are a select group of volunteers and pioneers from across the globe, handpicked based on their demonstrated abilities and experience. They take a leading role in empowering DevOps Institute community members with the SKIL framework to advance the Humans of DevOps with Skills, Knowledge, Ideas & Learning. As a DevOps Institute Ambassador, I serve as the regional face of DevOps Institute's global community comprising thousands of members.",
+    links: [
+      { label: "Credential", url: "https://www.devopsinstitute.com/ambassador_bio/supratip-banerjee/", primary: true },
+    ],
+    delay: 80,
+  },
+];
+
+function renderCommunity() {
+  document.getElementById('commGrid').innerHTML = COMMUNITY.map(c => {
+    const links = c.links.map(l =>
+      l.primary
+        ? `<a class="comm-link" href="${l.url}" target="_blank" rel="noopener">${l.label} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`
+        : `<a class="comm-link-secondary" href="${l.url}" target="_blank" rel="noopener">${l.label} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`
+    ).join('');
+
+    const badge = c.active
+      ? `<div class="comm-active-badge">Active</div>`
+      : '';
+
+    return `
+      <div class="comm-card" style="animation-delay:${c.delay}ms">
+        <div class="comm-card-header">
+          <div class="comm-logo">
+            <img src="${c.icon}" alt="${c.org}" />
+          </div>
+          <div class="comm-header-text">
+            <div class="comm-title">${c.title}</div>
+            <div class="comm-meta">
+              <span class="comm-org">${c.org}</span>
+              <span class="comm-dot"></span>
+              <span class="comm-since">${c.since}</span>
             </div>
-
-			<div class="flex pull-right">
-				<!--form method="get" action="index.html"><button class="btn" type="submit">About</button></form>&nbsp;&nbsp;-->
-				<form method="get" action="index.html">	<button class="btn" type="submit">Certification</button></form>&nbsp;&nbsp;
-				<form method="get" action="comm.html">	<button class="btn" type="submit">Community</button></form>&nbsp;&nbsp;
-				<form method="get" action="publication.html">	<button class="btn" type="submit">Publication</button></form>&nbsp;&nbsp;
-			    	<form method="get" action="speaker.html">	<button class="btn" type="submit">Speaker</button></form>&nbsp;&nbsp;
-				<form method="get" action="blog.html">	<button class="btn" type="submit">Blog</button></form>&nbsp;&nbsp;
-			</div>
-			
-            <!--a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a-->              
+          </div>
+          ${badge}
         </div>
-    </header>
+        <div class="comm-card-body">
+          <div class="comm-desc">${c.desc}</div>
+        </div>
+        <div class="comm-card-footer">
+          ${links}
+        </div>
+      </div>`;
+  }).join('');
+}
 
-
-	<!-- MAIN (Center website) -->
-	<div class="main">
-
-	
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-		<br>
-		
-
-	
-		
-
-	<div id="s">
-	
-		
-		<div class="widgets_div">
-		
-			<div class="icon_div">
-				<img src="files/comm_icons/acb.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>AWS Community Builder</b></span><br>
-				<span class="small_text">AWS</span><br>
-				<span class="small_text">Since June 2020</span><br><br>
-				<span class="small_text">The AWS Community Builders program offers technical resources, mentorship, and networking opportunities to AWS enthusiasts 
-				nd emerging thought leaders who are passionate about sharing knowledge and connecting with the technical community. </span><br><br>
-				<span class="small_text"><a href="https://tinyurl.com/9xcn3bfp" target="_blank">Credential</a> | <a href="https://dev.to/supratipb" target="_blank">Activity</a></span>
-			</div>	
-
-		</div>
-
-				
-				
-		<div class="widgets_div">
-		
-			<div class="icon_div">
-				<img src="files/comm_icons/devops-ins.jpg" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>DevOps Institute Ambassador</b></span><br>
-				<span class="small_text">DevOps Institute</span><br>
-				<span class="small_text">Since July 2021</span><br><br>
-				<span class="small_text">The DevOps Institute Ambassadors are a select group of volunteers and pioneers from across the globe handpicked based on 
-				their demonstrated abilities and experience, who take a leading role in empowering DevOps Institute community members with SKIL framework to advance 
-				the Humans of DevOps with Skills, Knowledge, Ideas & Learning.<br>
-				The DOIA program is designed to help DOIA realize their personal vision for the future, help establish valuable connections, and pursue 21st-century skills 
-				needed to achieve their professional goals with a head start while being a mentor and colleague to other community members. As a DevOps Institute Ambassador,
-				I will be the regional face of DevOps Institute’s global community comprising thousands of members.</span><br><br>
-				<span class="small_text"><a href="https://www.devopsinstitute.com/ambassador_bio/supratip-banerjee/" target="_blank">Credential</a> </span>
-			</div>	
-
-		</div>		
-		
-		
-		
-		
-			<!-- END GRID -->
-		</div> <img
-			src="https://hitwebcounter.com/counter/counter.php?page=7542486&style=0008&nbdigits=4&type=page&initCount=0"
-			title="Web Counter" Alt="counter free" border="0">
-		<!-- END MAIN -->
-	</div>
-	<script>
-	
-		function multiplyNode(node, count, deep) {
-
-			const fs = require('fs') 
-			console.log('hhhhhhhhhhhhhhhhhhhhh'	); 
-			fs.readFile('data.txt', 'utf-8', (err, data) => { 
-				if (err) throw err; 
-				console.log(data); 
-			}) 
-			
-			for (var i = 0, copy; i < count - 1; i++) {
-				copy = node.cloneNode(deep);
-				node.parentNode.insertBefore(copy, node);
-			}
-		}
-
-		multiplyNode(document.getElementById("demo"), 1, true);	
-		filterSelection("all")
-
-		function filterSelection(c) {
-			var x, i;
-			x = document.getElementsByClassName("column");
-			if (c == "all") c = "";
-			for (i = 0; i < x.length; i++) {
-				w3RemoveClass(x[i], "show");
-				if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-			}
-		}
-
-		function w3AddClass(element, name) {
-			var i, arr1, arr2;
-			arr1 = element.className.split(" ");
-			arr2 = name.split(" ");
-			for (i = 0; i < arr2.length; i++) {
-				if (arr1.indexOf(arr2[i]) == -1) {
-					element.className += " " + arr2[i];
-				}
-			}
-		}
-
-		function w3RemoveClass(element, name) {
-			var i, arr1, arr2;
-			arr1 = element.className.split(" ");
-			arr2 = name.split(" ");
-			for (i = 0; i < arr2.length; i++) {
-				while (arr1.indexOf(arr2[i]) > -1) {
-					arr1.splice(arr1.indexOf(arr2[i]), 1);
-				}
-			}
-			element.className = arr1.join(" ");
-		}
-		// Add active class to the current button (highlight it)
-		var btnContainer = document.getElementById("myBtnContainer");
-		var btns = btnContainer.getElementsByClassName("btn");
-		for (var i = 0; i < btns.length; i++) {
-			btns[i].addEventListener("click", function () {
-				var current = document.getElementsByClassName("active");
-				current[0].className = current[0].className.replace(" active", "");
-				this.className += " active";
-			});
-		}
-	</script>
+document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('hamburgerBtn').addEventListener('click', function () {
+  const nav = document.getElementById('mobileNav');
+  this.setAttribute('aria-expanded', nav.classList.toggle('open'));
+});
+renderCommunity();
+</script>
 </body>
-
 </html>
