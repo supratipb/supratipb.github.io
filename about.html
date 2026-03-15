@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Supratip Banerjee · About</title>
+  <link rel="icon" href="files/icons/title_icon.png" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg:             #f0f2f7;
+      --surface:        #ffffff;
+      --surface-2:      #f7f8fb;
+      --surface-3:      #eef0f6;
+      --border:         #e3e7f0;
+      --border-light:   #eef0f6;
+      --accent:         #3b6ef8;
+      --accent-hover:   #2554d4;
+      --accent-dim:     rgba(59,110,248,0.07);
+      --accent-dim2:    rgba(59,110,248,0.13);
+      --purple:         #7c3aed;
+      --green:          #059669;
+      --amber:          #d97706;
+      --text-primary:   #0f1623;
+      --text-secondary: #4b5568;
+      --text-muted:     #94a0b8;
+      --shadow-sm:      0 1px 3px rgba(15,22,35,0.06), 0 1px 2px rgba(15,22,35,0.04);
+      --shadow-md:      0 4px 16px rgba(15,22,35,0.08), 0 1px 4px rgba(15,22,35,0.05);
+      --shadow-hover:   0 8px 28px rgba(59,110,248,0.13), 0 2px 8px rgba(15,22,35,0.06);
+      --radius:         14px;
+      --radius-sm:      8px;
+      --radius-xs:      6px;
+      --font-body:      'DM Sans', sans-serif;
+      --font-mono:      'DM Mono', monospace;
+      --transition:     0.18s ease;
+      --max-w:          1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; transition: all var(--transition); }
+    a:hover { opacity: 0.8; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+
+    /* ══ HEADER (shared) ══ */
+    .site-header {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 0 var(--border), var(--shadow-sm);
+    }
+    .header-inner {
+      display: flex; align-items: center; gap: 18px;
+      padding: 14px 28px; max-width: var(--max-w); margin: 0 auto;
+    }
+    .profile-avatar-wrap { position: relative; flex-shrink: 0; }
+    .profile-avatar-wrap::before {
+      content: ''; position: absolute; inset: -3px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--purple)); z-index: 0;
+    }
+    .profile-avatar {
+      width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+      border: 2.5px solid #fff; position: relative; z-index: 1; display: block;
+    }
+    .profile-info { flex: 1; min-width: 0; }
+    .profile-name { font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .profile-title { font-size: 11.5px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.03em; }
+    .social-links { display: flex; gap: 8px; align-items: center; }
+    .social-links a {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: var(--radius-xs);
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text-secondary); font-size: 13px; transition: all var(--transition);
+    }
+    .social-links a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); opacity: 1; transform: translateY(-1px); }
+    .site-nav { display: flex; gap: 2px; align-items: center; }
+    .nav-link { font-size: 13px; font-weight: 500; color: var(--text-secondary); padding: 7px 14px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all var(--transition); white-space: nowrap; letter-spacing: -0.01em; }
+    .nav-link:hover { color: var(--text-primary); background: var(--surface-3); opacity: 1; }
+    .nav-link.active { color: var(--accent); background: var(--accent-dim); border-color: rgba(59,110,248,0.2); font-weight: 600; opacity: 1; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-secondary); border-radius: 2px; transition: all var(--transition); }
+    .mobile-nav { display: none; background: var(--surface); border-top: 1px solid var(--border-light); padding: 10px 20px 14px; flex-wrap: wrap; gap: 4px; }
+    .mobile-nav.open { display: flex; }
+
+    /* ══ HERO ══ */
+    .hero-strip {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b6ef8 50%, #7c3aed 100%);
+      padding: 40px 0 36px; position: relative; overflow: hidden;
+    }
+    .hero-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    }
+    .hero-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 28px;
+      position: relative; display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+    }
+    .hero-avatar-wrap { position: relative; flex-shrink: 0; }
+    .hero-avatar-wrap::before {
+      content: ''; position: absolute; inset: -4px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+    }
+    .hero-avatar {
+      width: 88px; height: 88px; border-radius: 50%; object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.5); position: relative; z-index: 1;
+    }
+    .hero-text { flex: 1; min-width: 220px; }
+    .hero-eyebrow { font-size: 11px; font-family: var(--font-mono); color: rgba(255,255,255,0.6); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+    .hero-name { font-size: 30px; font-weight: 700; color: #fff; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 4px; }
+    .hero-role { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 8px; font-weight: 500; }
+    .hero-intro { font-size: 13.5px; color: rgba(255,255,255,0.62); max-width: 540px; line-height: 1.65; }
+    .hero-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .hero-badge {
+      font-size: 11px; font-family: var(--font-mono); padding: 4px 12px;
+      border-radius: 20px; border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);
+    }
+    .hero-stats { display: flex; gap: 28px; flex-wrap: wrap; flex-shrink: 0; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 28px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.02em; }
+    .stat-label { font-size: 10.5px; color: rgba(255,255,255,0.5); font-family: var(--font-mono); letter-spacing: 0.06em; margin-top: 3px; text-transform: uppercase; }
+
+    /* ══ MAIN ══ */
+    .main { padding: 40px 0 80px; }
+    .two-col { display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start; }
+
+    /* ══ SECTION CARD ══ */
+    .section-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .section-head {
+      padding: 18px 24px 14px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-icon {
+      width: 32px; height: 32px; border-radius: var(--radius-xs);
+      background: var(--accent-dim); color: var(--accent);
+      display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;
+    }
+    .section-title { font-size: 14px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
+    .section-body { padding: 20px 24px; }
+
+    /* ══ SUMMARY ══ */
+    .summary-text { font-size: 14.5px; color: var(--text-secondary); line-height: 1.75; }
+
+    /* ══ EXPERIENCE TIMELINE ══ */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item { display: flex; gap: 16px; padding-bottom: 24px; position: relative; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .timeline-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--surface);
+      box-shadow: 0 0 0 2px var(--accent-dim2); flex-shrink: 0; margin-top: 4px;
+    }
+    .timeline-line {
+      width: 2px; flex: 1; background: var(--border); margin-top: 4px;
+    }
+    .timeline-item:last-child .timeline-line { display: none; }
+    .timeline-content { flex: 1; min-width: 0; }
+    .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 3px; }
+    .timeline-company { font-size: 14px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
+    .timeline-period { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); white-space: nowrap; margin-top: 2px; }
+    .timeline-role-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+    .timeline-role { font-size: 13px; font-weight: 600; color: var(--accent); }
+    .timeline-domain {
+      font-size: 11px; font-family: var(--font-mono); padding: 2px 8px;
+      border-radius: 20px; background: var(--surface-3); border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .timeline-bullets { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .timeline-bullets li { font-size: 13px; color: var(--text-secondary); display: flex; gap: 8px; line-height: 1.5; }
+    .timeline-bullets li::before { content: '–'; color: var(--text-muted); flex-shrink: 0; }
+
+    /* ══ SKILLS / TECH ══ */
+    .skill-group { margin-bottom: 20px; }
+    .skill-group:last-child { margin-bottom: 0; }
+    .skill-group-label {
+      font-size: 11px; font-family: var(--font-mono); letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .skill-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-tag {
+      font-size: 12.5px; font-weight: 500; padding: 5px 12px;
+      border-radius: var(--radius-sm); border: 1px solid var(--border);
+      background: var(--surface-2); color: var(--text-secondary);
+      transition: all var(--transition); cursor: default;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .skill-tag.highlight { background: var(--accent-dim); border-color: rgba(59,110,248,0.25); color: var(--accent); }
+
+    /* ══ SIDEBAR CARDS ══ */
+    .info-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border-light); }
+    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-row:first-child { padding-top: 0; }
+    .info-icon { width: 32px; height: 32px; border-radius: var(--radius-xs); background: var(--surface-3); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+    .info-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); letter-spacing: 0.03em; margin-bottom: 2px; }
+    .info-value { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+    .info-value a { color: var(--accent); }
+
+    /* Accolades */
+    .accolade-list { display: flex; flex-direction: column; gap: 10px; }
+    .accolade-item { display: flex; gap: 10px; align-items: flex-start; }
+    .accolade-icon { color: var(--amber); font-size: 13px; margin-top: 2px; flex-shrink: 0; }
+    .accolade-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* Community */
+    .community-item { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-light); }
+    .community-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .community-item:first-child { padding-top: 0; }
+    .community-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 5px; }
+    .community-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .community-text strong { color: var(--text-primary); }
+
+    /* ══ FOOTER ══ */
+    .site-footer { border-top: 1px solid var(--border); padding: 28px; text-align: center; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); background: var(--surface); }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .header-inner { padding: 12px 20px; gap: 12px; }
+      .site-nav { display: none; }
+      .hamburger { display: flex; }
+      .hero-strip { padding: 28px 0; }
+      .hero-name { font-size: 24px; }
+      .hero-stats { gap: 16px; }
+      .container { padding: 0 20px; }
+    }
+    @media (max-width: 520px) {
+      .hero-inner { flex-direction: column; }
+      .hero-avatar { width: 68px; height: 68px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="profile-avatar-wrap">
+      <img class="profile-avatar" src="assets/images/profile.png" alt="Supratip Banerjee" />
+    </div>
+    <div class="profile-info">
+      <div class="profile-name">Supratip Banerjee</div>
+      <div class="profile-title">Principal Architect · CitiusTech &nbsp;|&nbsp; 18 yrs · Cloud, Microservices, DDD</div>
+    </div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/supratipb/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://twitter.com/supratip" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="index.html" class="nav-link">Certifications</a>
+      <a href="comm.html" class="nav-link">Community</a>
+      <a href="publication.html" class="nav-link">Publications</a>
+      <a href="speaker.html" class="nav-link">Speaker</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="about.html" class="nav-link active">About</a>
+    <a href="index.html" class="nav-link">Certifications</a>
+    <a href="comm.html" class="nav-link">Community</a>
+    <a href="publication.html" class="nav-link">Publications</a>
+    <a href="speaker.html" class="nav-link">Speaker</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+</header>
+
+<!-- ── Hero ── -->
+<div class="hero-strip">
+  <div class="hero-inner">
+    <div class="hero-avatar-wrap">
+      <img class="hero-avatar" src="assets/images/profile.png" alt="Supratip Banerjee" />
+    </div>
+    <div class="hero-text">
+      <div class="hero-eyebrow">Principal Architect · Healthcare · Pune, India</div>
+      <h1 class="hero-name">Supratip Banerjee</h1>
+      <div class="hero-role">Currently at CitiusTech &nbsp;·&nbsp; 18 Years of Experience</div>
+      <div class="hero-intro">Driving digital transformation, cloud migration, and application modernisation across healthcare, telecom, and BFSI — from architecture design to hands-on delivery.</div>
+      <div class="hero-badges">
+        <span class="hero-badge">AWS Community Builder</span>
+        <span class="hero-badge">DevOps Institute Ambassador</span>
+        <span class="hero-badge">TOGAF Certified</span>
+        <span class="hero-badge">60+ Certifications</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">18</div>
+        <div class="stat-label">Years Exp.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Companies</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Domains</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Main ── -->
+<main class="main">
+  <div class="container">
+    <div class="two-col">
+
+      <!-- LEFT COLUMN -->
+      <div>
+
+        <!-- Summary -->
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-icon"><i class="fa-solid fa-user"></i></div>
+            <div class="section-title">Professional Summary</div>
+          </div>
+          <div class="section-body">
+            <p class="summary-text">
+              Principal Architect with 18 years of experience driving digital transformation, cloud migration,
+              and application modernisation across healthcare, telecom, and BFSI domains. Specialised in
+              full-stack and cloud-native architecture, enterprise integration, and automation. Deep expertise
+              in Microservices, Domain-Driven Design (DDD), Event-Driven Architecture (EDA), and modern
+              DevOps and DevSecOps practices. Strong background in designing scalable, secure systems with
+              robust data architecture, including SQL/NoSQL. Recognised thought leader with published articles,
+              webinar talks, and active community contributions.
+            </p>
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="section-title">Work Experience</div>
+          </div>
+          <div class="section-body">
+            <div class="timeline">
+
+              <div class="timeline-item">
+                <div class="timeline-left">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-line"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-header">
+                    <div class="timeline-company">CitiusTech</div>
+                    <div class="timeline-period">Jan 2025 – Present</div>
+                  </div>
+                  <div class="timeline-role-row">
+                    <span class="timeline-role">Principal Architect</span>
+                    <span class="timeline-domain">Healthcare</span>
+                  </div>
+                  <ul class="timeline-bullets">
+                    <li>Architecting cloud-native solutions for enterprise healthcare applications focused on Medical Imaging, FHIR, and DICOM interoperability.</li>
+                    <li>Driving legacy modernisation using Microservices and Event-Driven Architecture, ensuring scalability, compliance, and security.</li>
+                    <li>Providing hands-on guidance on application, data, DevOps and DevSecOps practices.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-left">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-line"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-header">
+                    <div class="timeline-company">EXFO</div>
+                    <div class="timeline-period">Nov 2023 – Dec 2024</div>
+                  </div>
+                  <div class="timeline-role-row">
+                    <span class="timeline-role">Sr. Architect</span>
+                    <span class="timeline-domain">Telecommunications</span>
+                  </div>
+                  <ul class="timeline-bullets">
+                    <li>Led digital transformation and cloud migration to AWS, improving system scalability and performance.</li>
+                    <li>Decomposed complex applications into Microservices, created conceptual, system, deployment, security, HLD and LLD diagrams.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-left">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-line"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-header">
+                    <div class="timeline-company">Principal Global Services</div>
+                    <div class="timeline-period">Jun 2019 – Nov 2023</div>
+                  </div>
+                  <div class="timeline-role-row">
+                    <span class="timeline-role">Solutions Architect</span>
+                    <span class="timeline-domain">BFSI</span>
+                  </div>
+                  <ul class="timeline-bullets">
+                    <li>Drove digital transformation, cloud adoption, and hyper-automation for enterprise BFSI applications.</li>
+                    <li>Designed scalable Microservices using DDD and EDA; architected full-stack solutions (Java, Spring, TypeScript, ReactJS) and migrated to AWS.</li>
+                    <li>Established DevSecOps and CI/CD pipelines with Terraform IaC across AWS, Azure, and GCP.</li>
+                    <li>Championed Dojo culture, security best practices, and full lifecycle ownership.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-left">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-line"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-header">
+                    <div class="timeline-company">Tata Consultancy Services</div>
+                    <div class="timeline-period">Jul 2012 – May 2019</div>
+                  </div>
+                  <div class="timeline-role-row">
+                    <span class="timeline-role">Technical Architect</span>
+                    <span class="timeline-domain">Retail · Market Research</span>
+                  </div>
+                  <ul class="timeline-bullets">
+                    <li>Technical anchor for cross-functional Agile teams; designed and developed applications using Java, ReactJS, AngularJS, PostgreSQL.</li>
+                    <li>Onsite Technical Architect at Nielsen, Pennsylvania, USA (Jun 2014 – Oct 2016) — managed cross-functional client and vendor teams.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-left">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-line"></div>
+                </div>
+                <div class="timeline-content">
+                  <div class="timeline-header">
+                    <div class="timeline-company">Earlier Roles</div>
+                    <div class="timeline-period">2007 – 2012</div>
+                  </div>
+                  <div class="timeline-role-row">
+                    <span class="timeline-role">Tech Lead / Sr. Analyst / Developer</span>
+                  </div>
+                  <ul class="timeline-bullets">
+                    <li>Decos Software · Atos Syntel · SecurView Systems — Java, J2EE, Spring, Hibernate, PostgreSQL. Built reporting portals, reverse-engineered legacy systems, and established full DevOps ecosystems from scratch.</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech & Skills -->
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-icon"><i class="fa-solid fa-microchip"></i></div>
+            <div class="section-title">Technologies &amp; Skills</div>
+          </div>
+          <div class="section-body">
+
+            <div class="skill-group">
+              <div class="skill-group-label">Architecture &amp; Patterns</div>
+              <div class="skill-tags">
+                <span class="skill-tag highlight">Microservices</span>
+                <span class="skill-tag highlight">Domain-Driven Design</span>
+                <span class="skill-tag highlight">Event-Driven Architecture</span>
+                <span class="skill-tag highlight">TOGAF</span>
+                <span class="skill-tag">REST API</span>
+                <span class="skill-tag">Cloud Native</span>
+                <span class="skill-tag">Serverless</span>
+                <span class="skill-tag">SOA</span>
+                <span class="skill-tag">FHIR / DICOM</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-label">Cloud</div>
+              <div class="skill-tags">
+                <span class="skill-tag highlight">AWS</span>
+                <span class="skill-tag">ECS · EC2 · Lambda</span>
+                <span class="skill-tag">RDS · DynamoDB · Aurora</span>
+                <span class="skill-tag">SNS · SQS · API Gateway</span>
+                <span class="skill-tag">VPC · IAM · Cognito</span>
+                <span class="skill-tag">CloudFront · S3</span>
+                <span class="skill-tag">Azure</span>
+                <span class="skill-tag">GCP</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-label">Backend</div>
+              <div class="skill-tags">
+                <span class="skill-tag highlight">Java · Spring Boot</span>
+                <span class="skill-tag">J2EE · Hibernate</span>
+                <span class="skill-tag">TypeScript · Node.js</span>
+                <span class="skill-tag">Python · Django</span>
+                <span class="skill-tag">GraphQL</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-label">Frontend</div>
+              <div class="skill-tags">
+                <span class="skill-tag highlight">ReactJS · Next.js</span>
+                <span class="skill-tag">AngularJS</span>
+                <span class="skill-tag">HTML · CSS · JavaScript</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-label">Data &amp; Storage</div>
+              <div class="skill-tags">
+                <span class="skill-tag">PostgreSQL · Oracle · MySQL</span>
+                <span class="skill-tag">MongoDB · Cassandra · Redis</span>
+                <span class="skill-tag">DynamoDB · DB2 · SQL Server</span>
+                <span class="skill-tag">Amazon S3</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-label">DevOps &amp; Tooling</div>
+              <div class="skill-tags">
+                <span class="skill-tag highlight">Terraform</span>
+                <span class="skill-tag">Jenkins · GitLab · GitHub</span>
+                <span class="skill-tag">Docker · ECS</span>
+                <span class="skill-tag">ELK · Dynatrace · CloudWatch</span>
+                <span class="skill-tag">Hashicorp Vault</span>
+                <span class="skill-tag">Maven</span>
+                <span class="skill-tag">Apache Kafka</span>
+              </div>
+            </div>
+
+            <div class="skill-group">
+              <div class="skill-group-label">Methodologies</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Agile · Scrum</span>
+                <span class="skill-tag">DOJO Culture</span>
+                <span class="skill-tag">DevSecOps</span>
+                <span class="skill-tag">NIST · OWASP</span>
+                <span class="skill-tag">Program Management</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /LEFT -->
+
+      <!-- RIGHT COLUMN -->
+      <div>
+
+        <!-- Contact & Info -->
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-icon"><i class="fa-solid fa-address-card"></i></div>
+            <div class="section-title">Details</div>
+          </div>
+          <div class="section-body" style="padding-top:16px;">
+            <div class="info-row">
+              <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <div class="info-label">Location</div>
+                <div class="info-value">Pune, India</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon"><i class="fa-solid fa-building"></i></div>
+              <div>
+                <div class="info-label">Current Employer</div>
+                <div class="info-value">CitiusTech · Healthcare</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <div class="info-label">Email</div>
+                <div class="info-value"><a href="mailto:supratip.banerjee@yahoo.in">supratip.banerjee@yahoo.in</a></div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon"><i class="fab fa-linkedin-in"></i></div>
+              <div>
+                <div class="info-label">LinkedIn</div>
+                <div class="info-value"><a href="https://www.linkedin.com/in/supratipb/" target="_blank">linkedin.com/in/supratipb</a></div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <div>
+                <div class="info-label">Education</div>
+                <div class="info-value">B.Tech Computer Science<br><span style="font-size:12px;color:var(--text-muted);font-weight:400;">MAKAUT · DGPA 8.18 · 2007</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="section-title">Community</div>
+          </div>
+          <div class="section-body">
+            <div class="community-item">
+              <div class="community-dot"></div>
+              <div class="community-text"><strong>AWS Community Builder</strong><br>June 2020 – Present</div>
+            </div>
+            <div class="community-item">
+              <div class="community-dot"></div>
+              <div class="community-text"><strong>DevOps Institute Ambassador</strong><br>Thought leadership & community engagement</div>
+            </div>
+            <div class="community-item">
+              <div class="community-dot"></div>
+              <div class="community-text">Published articles, webinar speaker, and active contributor to the tech community</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accolades -->
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-icon" style="background:rgba(217,119,6,0.1);color:var(--amber);"><i class="fa-solid fa-award"></i></div>
+            <div class="section-title">Accolades</div>
+          </div>
+          <div class="section-body">
+            <div class="accolade-list">
+              <div class="accolade-item">
+                <div class="accolade-icon"><i class="fa-solid fa-star"></i></div>
+                <div class="accolade-text">Quarterly Award — Thought Leadership in App Modernisation & Cloud Migration · Principal 2022</div>
+              </div>
+              <div class="accolade-item">
+                <div class="accolade-icon"><i class="fa-solid fa-star"></i></div>
+                <div class="accolade-text">Quarterly Award — Successful Cloud Production Deployment · Principal 2021</div>
+              </div>
+              <div class="accolade-item">
+                <div class="accolade-icon"><i class="fa-solid fa-star"></i></div>
+                <div class="accolade-text">Quarterly Award — Bringing Cloud Mindset Across BU · Principal 2020</div>
+              </div>
+              <div class="accolade-item">
+                <div class="accolade-icon"><i class="fa-solid fa-star"></i></div>
+                <div class="accolade-text">Code Jam Initiative presented at CEO level · TCS Ideation Contest 2017</div>
+              </div>
+              <div class="accolade-item">
+                <div class="accolade-icon"><i class="fa-solid fa-star"></i></div>
+                <div class="accolade-text">Star Performer Award · TCS – Nielsen Leadership 2014</div>
+              </div>
+              <div class="accolade-item">
+                <div class="accolade-icon"><i class="fa-solid fa-star"></i></div>
+                <div class="accolade-text">Certificate of Recognition by Client · TCS 2012 &amp; 2013</div>
+              </div>
+              <div class="accolade-item">
+                <div class="accolade-icon"><i class="fa-solid fa-star"></i></div>
+                <div class="accolade-text">Best Team Player Award · SecurView 2007</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-icon" style="background:rgba(5,150,105,0.1);color:var(--green);"><i class="fa-solid fa-heart"></i></div>
+            <div class="section-title">Personal Interests</div>
+          </div>
+          <div class="section-body">
+            <div class="skill-tags">
+              <span class="skill-tag">🎵 Singing</span>
+              <span class="skill-tag">✈️ Travelling</span>
+              <span class="skill-tag">📷 Photography</span>
+              <span class="skill-tag">🎨 Painting</span>
+              <span class="skill-tag">✍️ Writing</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /RIGHT -->
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  &copy; <span id="year"></span> Supratip Banerjee &nbsp;·&nbsp; Principal Architect · CitiusTech
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('hamburgerBtn').addEventListener('click', function () {
+    const nav = document.getElementById('mobileNav');
+    const open = nav.classList.toggle('open');
+    this.setAttribute('aria-expanded', open);
+  });
+</script>
+</body>
+</html>
