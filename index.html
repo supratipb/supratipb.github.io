@@ -432,8 +432,8 @@
 
     /* Badge wrapper with subtle bg */
     .cert-badge-wrap {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       border-radius: var(--radius-sm);
       background: var(--surface-2);
       border: 1px solid var(--border-light);
@@ -441,7 +441,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px;
+      padding: 8px;
     }
     .cert-badge {
       width: 100%;
@@ -550,7 +550,8 @@
     </div>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/supratipb/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://twitter.com/supratip" target="_blank" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://medium.com/@supratipb" target="_blank" aria-label="Medium"><i class="fab fa-medium"></i></a>
+      <a href="https://dev.to/supratipb" target="_blank" aria-label="dev.to"><i class="fab fa-dev"></i></a>
     </div>
     <nav class="site-nav" aria-label="Main navigation">
       <a href="index.html" class="nav-link active">Certifications</a>
@@ -579,9 +580,6 @@
       <div class="hero-eyebrow">Professional Portfolio</div>
       <h1 class="hero-title">Certifications</h1>
       <div class="hero-sub">Verified credentials across cloud, architecture &amp; engineering</div>
-    </div>
-    <div class="hero-stats" id="heroStats">
-      <!-- filled by JS -->
     </div>
   </div>
 </div>
@@ -1249,23 +1247,6 @@ document.getElementById('hamburgerBtn').addEventListener('click', function () {
   const open = nav.classList.toggle('open');
   this.setAttribute('aria-expanded', open);
 });
-
-// Hero stats
-const groupCount = new Set(CERTIFICATIONS.map(c => c.group)).size;
-document.getElementById('heroStats').innerHTML = `
-  <div class="stat-item">
-    <div class="stat-number">${CERTIFICATIONS.length}</div>
-    <div class="stat-label">Certifications</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">${groupCount}</div>
-    <div class="stat-label">Categories</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-number">${new Set(CERTIFICATIONS.map(c => c.issuer)).size}</div>
-    <div class="stat-label">Issuers</div>
-  </div>
-`;
 
 // Init
 document.getElementById('year').textContent = new Date().getFullYear();
