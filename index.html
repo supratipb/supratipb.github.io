@@ -1,1183 +1,1044 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<title> SUPRATIP BANERJEE </title>
-	<link rel="icon" href="files/icons/title_icon.png" type="image/x-icon">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<!-- Global CSS -->
-	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">  
-	<!-- Theme CSS -->  
-	<link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8" />
+  <title>Supratip Banerjee</title>
+  <link rel="icon" href="files/icons/title_icon.png" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	
-	
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-175660554-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-		gtag('config', 'UA-175660554-1');
-		(function (w, d, s, l, i) {
-			w[l] = w[l] || []; w[l].push({
-				'gtm.start':
-					new Date().getTime(), event: 'gtm.js'
-			}); var f = d.getElementsByTagName(s)[0],
-				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-		})(window, document, 'script', 'dataLayer', 'GTM-WPLRVV4');
-	</script>
-	<!-- End Google Tag Manager -->
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175660554-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-175660554-1');
+  </script>
 
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --bg:          #f5f6f8;
+      --surface:     #ffffff;
+      --surface-2:   #f0f2f5;
+      --border:      #e2e5ea;
+      --accent:      #2563eb;
+      --accent-dim:  rgba(37, 99, 235, 0.08);
+      --text-primary:   #111318;
+      --text-secondary: #5a6172;
+      --text-muted:     #9aa0ad;
+      --radius:      12px;
+      --radius-sm:   8px;
+      --font-body:   'DM Sans', sans-serif;
+      --font-mono:   'DM Mono', monospace;
+      --transition:  0.2s ease;
+      --max-w:       1100px;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+    a:hover { opacity: 0.75; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Layout Helpers ── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 24px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .profile-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+    }
+    .profile-info { flex: 1; min-width: 0; }
+    .profile-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .profile-title {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+    }
+    .social-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .social-links a {
+      color: var(--text-secondary);
+      font-size: 15px;
+      transition: color var(--transition);
+    }
+    .social-links a:hover { color: var(--accent); opacity: 1; }
+
+    /* ── Nav ── */
+    .site-nav {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      transition: all var(--transition);
+      white-space: nowrap;
+      font-family: var(--font-mono);
+      letter-spacing: 0.03em;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent);
+      border-color: var(--border);
+      background: var(--surface-2);
+      opacity: 1;
+    }
+
+    /* ── Hamburger ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+      margin-left: auto;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+    .mobile-nav {
+      display: none;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 12px 24px 16px;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .mobile-nav.open { display: flex; }
+
+    /* ── Main ── */
+    .main { padding: 40px 0 80px; }
+
+    /* ── Filter Bar ── */
+    .filter-section { margin-bottom: 32px; }
+    .filter-label {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-btn {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.03em;
+    }
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    /* ── Cert Count ── */
+    .cert-count {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+    .cert-count span { color: var(--accent); }
+
+    /* ── Section Group ── */
+    .cert-group { margin-bottom: 48px; }
+    .group-label {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .group-label::before {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* ── Cert Grid ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    /* ── Cert Card ── */
+    .cert-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      animation: fadeUp 0.35s ease both;
+    }
+    .cert-card:hover {
+      border-color: var(--accent);
+      background: var(--surface-2);
+      transform: translateY(-2px);
+    }
+    .cert-card.hidden { display: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cert-badge {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 8px;
+    }
+    .cert-info { flex: 1; min-width: 0; }
+    .cert-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .cert-issuer {
+      font-size: 12px;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      margin-bottom: 4px;
+    }
+    .cert-date {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-family: var(--font-mono);
+    }
+    .cert-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 20px;
+      transition: all var(--transition);
+    }
+    .cert-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      opacity: 1;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .header-inner { flex-wrap: wrap; gap: 12px; }
+      .site-nav { display: none; }
+      .hamburger { display: flex; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .profile-name { font-size: 15px; }
+    }
+    @media (max-width: 480px) {
+      .social-links { gap: 10px; }
+      .filter-btn { font-size: 11px; padding: 4px 10px; }
+    }
+  </style>
 </head>
-
 <body>
 
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="header-inner">
+    <img class="profile-avatar" src="assets/images/profile.png" alt="Supratip Banerjee" />
+    <div class="profile-info">
+      <div class="profile-name">Supratip Banerjee</div>
+      <div class="profile-title">Solutions Architect</div>
+    </div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/supratipb/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://twitter.com/supratip" target="_blank" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-link active">Certifications</a>
+      <a href="comm.html" class="nav-link">Community</a>
+      <a href="publication.html" class="nav-link">Publications</a>
+      <a href="speaker.html" class="nav-link">Speaker</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="index.html" class="nav-link active">Certifications</a>
+    <a href="comm.html" class="nav-link">Community</a>
+    <a href="publication.html" class="nav-link">Publications</a>
+    <a href="speaker.html" class="nav-link">Speaker</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+</header>
+
+<!-- ── Main ── -->
+<main class="main">
+  <div class="container">
+
+    <!-- Filter Bar -->
+    <section class="filter-section" aria-label="Filter certifications">
+      <div class="filter-label">Filter by provider</div>
+      <div class="filter-bar" id="filterBar" role="group" aria-label="Certification filters"></div>
+      <div class="cert-count" id="certCount"></div>
+    </section>
+
+    <!-- Cert Groups rendered by JS -->
+    <div id="certBoard"></div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  &copy; <span id="year"></span> Supratip Banerjee &nbsp;·&nbsp; Solutions Architect
+</footer>
+
+<script>
+// ─────────────────────────────────────────────
+//  DATA  — edit this object to update the page
+// ─────────────────────────────────────────────
+const PROFILE = {
+  name:  "Supratip Banerjee",
+  title: "Solutions Architect",
+  photo: "assets/images/profile.png",
+  linkedin: "https://www.linkedin.com/in/supratipb/",
+  twitter:  "https://twitter.com/supratip",
+};
+
+const CERTIFICATIONS = [
+  // ── Enterprise Architecture ──────────────────
+  {
+    group:    "Enterprise Architecture",
+    name:     "TOGAF® 9 Enterprise Architect",
+    issuer:   "The Open Group",
+    date:     "Issued Jul 2022 · Does not expire",
+    icon:     "files/icons/badge-togaf9-certified.png",
+    url:      "https://www.credly.com/badges/f1764332-112d-4f16-8c98-4be421d226bd/public_url",
+  },
+
+  // ── AWS ──────────────────────────────────────
+  {
+    group:    "AWS",
+    name:     "AWS Certified AI Practitioner",
+    issuer:   "AWS",
+    date:     "Issued Oct 2024 · Expires Sep 2027",
+    icon:     "files/icons/AWS-AI.png",
+    url:      "https://www.credly.com/badges/c25d90f9-f6d4-453d-84b1-312b0d201ccb/public_url",
+  },
+  {
+    group:    "AWS",
+    name:     "AWS Solution Architect Associate",
+    issuer:   "AWS",
+    date:     "Issued Jul 2021 · Expires Jul 2024",
+    icon:     "files/icons/AWS-SAA.png",
+    url:      "https://www.credly.com/badges/b4375235-f129-4890-9c0c-b09c08839ea4/public_url",
+  },
+  {
+    group:    "AWS",
+    name:     "AWS Certified Cloud Practitioner",
+    issuer:   "AWS",
+    date:     "Issued Dec 2021 · Expires Dec 2024",
+    icon:     "files/icons/AWS-CCP.png",
+    url:      "https://www.credly.com/badges/e8d7f4d4-dd72-45f3-a681-f335eac40e01/public_url",
+  },
+  {
+    group:    "AWS",
+    name:     "AWS Well-Architected Proficient",
+    issuer:   "AWS",
+    date:     "Issued Jun 2021 · Does not expire",
+    icon:     "files/icons/WellArch-Proficient.png",
+    url:      "https://www.credly.com/badges/53fac167-1245-4cd1-9f7b-a61b356fbd37",
+  },
+  {
+    group:    "AWS",
+    name:     "AWS Partner: Accreditation (Technical)",
+    issuer:   "AWS",
+    date:     "Issued Aug 2021 · Does not expire",
+    icon:     "files/icons/aws-tech.png",
+    url:      "https://www.credly.com/badges/6c1dd820-81ef-4b50-87d5-953350f7d5e5",
+  },
+  {
+    group:    "AWS",
+    name:     "AWS Partner: Accreditation (Business)",
+    issuer:   "AWS",
+    date:     "Issued Sep 2021 · Does not expire",
+    icon:     "files/icons/aws_business.png",
+    url:      "https://www.credly.com/earner/earned/badge/a90f4ef2-b040-4fd0-9f70-bfb49ee5e0ef",
+  },
+  {
+    group:    "AWS",
+    name:     "AWS Partner: Cloud Economics Accreditation",
+    issuer:   "AWS",
+    date:     "Issued Sep 2021 · Does not expire",
+    icon:     "files/icons/aws-eco.png",
+    url:      "https://www.credly.com/earner/earned/badge/57d0a0e5-fdab-499b-818c-9af00addb789",
+  },
+
+  // ── Google Cloud ─────────────────────────────
+  {
+    group:    "Google Cloud",
+    name:     "Cloud Digital Leader Certification",
+    issuer:   "Google Cloud",
+    date:     "Issued Aug 2025 · Expires Aug 2028",
+    icon:     "files/icons/GCP-1.png",
+    url:      "https://www.credly.com/badges/a7252afd-5c4a-4453-a5bd-bfdf3b3d029f/public_url",
+  },
+  {
+    group:    "Google Cloud",
+    name:     "Generative AI Leader Certification",
+    issuer:   "Google Cloud",
+    date:     "Issued Sep 2025 · Expires Sep 2028",
+    icon:     "files/icons/GCP-2.png",
+    url:      "https://www.credly.com/badges/e71ea2f8-2547-45b3-b65a-51e35a32581b",
+  },
+
+  // ── Microsoft Azure ───────────────────────────
+  {
+    group:    "Microsoft Azure",
+    name:     "Azure Fundamentals",
+    issuer:   "Microsoft",
+    date:     "Issued Aug 2020 · Does not expire",
+    icon:     "files/icons/azure-fundamentals-600x600.png",
+    url:      "https://www.youracclaim.com/badges/e6585be0-647a-49d8-bc56-71aed9bec9f9/public_url",
+  },
+  {
+    group:    "Microsoft Azure",
+    name:     "Azure Data Fundamentals",
+    issuer:   "Microsoft",
+    date:     "Issued Aug 2020 · Does not expire",
+    icon:     "files/icons/azure-data-fundamentals-600x600.png",
+    url:      "https://www.youracclaim.com/badges/67b1e427-f95a-47b1-a8e7-87347dea6a30/public_url",
+  },
+  {
+    group:    "Microsoft Azure",
+    name:     "Azure AI Fundamentals",
+    issuer:   "Microsoft",
+    date:     "Issued Jan 2021 · Does not expire",
+    icon:     "files/icons/azure-ai-fundamentals-600x600.png",
+    url:      "https://www.credly.com/badges/872db661-a6a7-49b8-8f0f-ee12c9236679",
+  },
+  {
+    group:    "Microsoft Azure",
+    name:     "Security, Compliance & Identity Fundamentals",
+    issuer:   "Microsoft",
+    date:     "Issued Aug 2021 · Does not expire",
+    icon:     "files/icons/sc-900.png",
+    url:      "https://www.credly.com/badges/6b16e2ae-c4d6-4407-aef1-10ab078755ec/public_url",
+  },
+  {
+    group:    "Microsoft Azure",
+    name:     "Power Platform Fundamentals",
+    issuer:   "Microsoft",
+    date:     "Issued Aug 2021 · Does not expire",
+    icon:     "files/icons/pl-900.png",
+    url:      "https://www.credly.com/badges/30c4a7bd-c053-4768-8d59-e6aedbf9748b/public_url",
+  },
+
+  // ── Oracle Cloud ──────────────────────────────
+  {
+    group:    "Oracle Cloud",
+    name:     "Cloud Foundation",
+    issuer:   "Oracle",
+    date:     "Issued Sep 2020 · Expires Feb 2022",
+    icon:     "files/icons/03_Oracle_Cloud_Infrastructure_Foundations_Associate.png",
+    url:      "https://www.youracclaim.com/badges/7f321214-523d-4d34-899b-f417f16be906",
+  },
+  {
+    group:    "Oracle Cloud",
+    name:     "Cloud Developer",
+    issuer:   "Oracle",
+    date:     "Issued Jul 2020 · Expires Jan 2022",
+    icon:     "files/icons/03_Oracle-Cloud_Infrastructure_Developer_Associate.png",
+    url:      "https://www.youracclaim.com/badges/ece4eade-75c4-4a79-bc59-f8a65e5c4800",
+  },
+  {
+    group:    "Oracle Cloud",
+    name:     "Cloud Operations",
+    issuer:   "Oracle",
+    date:     "Issued Aug 2020 · Expires Feb 2022",
+    icon:     "files/icons/09_Associate_OCI_Cloud_Operations_2019.png",
+    url:      "https://www.youracclaim.com/badges/e8651951-21ac-40a1-bafb-e8392d80a8cb",
+  },
+  {
+    group:    "Oracle Cloud",
+    name:     "Cloud Architect Associate",
+    issuer:   "Oracle",
+    date:     "Issued Aug 2020 · Expires Aug 2022",
+    icon:     "files/icons/08_Associate_OCI_Architect_2019.png",
+    url:      "https://www.youracclaim.com/badges/90efd3c3-0464-4467-a087-53d0139e6f5b",
+  },
+  {
+    group:    "Oracle Cloud",
+    name:     "Autonomous Database Specialist",
+    issuer:   "Oracle",
+    date:     "Issued Aug 2020 · Expires Feb 2022",
+    icon:     "files/icons/Oracle-Certification-badge_OC-Specialist.png",
+    url:      "https://www.youracclaim.com/badges/b2242261-db23-401e-8776-1fe04fdf2d33",
+  },
+  {
+    group:    "Oracle Cloud",
+    name:     "Cloud Architect Professional",
+    issuer:   "Oracle",
+    date:     "Issued Aug 2020 · Expires Feb 2022",
+    icon:     "files/icons/11_OCI_Architect_Professional_2019.png",
+    url:      "https://www.youracclaim.com/badges/587c93e4-7229-43bc-a71d-a22ae8548859",
+  },
+
+  // ── Data & Databases ──────────────────────────
+  {
+    group:    "Data & Databases",
+    name:     "SnowPro Associate: Platform Certification",
+    issuer:   "Snowflake",
+    date:     "Issued Jun 2025 · Expires Jun 2027",
+    icon:     "files/icons/Snowflake-platform.png",
+    url:      "https://achieve.snowflake.com/46137dcc-de6b-46ba-a65b-fc788c1a7ec6#acc.j36cAe57",
+  },
+  {
+    group:    "Data & Databases",
+    name:     "Apache Cassandra 3 Administrator Associate",
+    issuer:   "Datastax",
+    date:     "Issued Dec 2020 · Does not expire",
+    icon:     "files/icons/Cassandra Admin Certification Badge 1_0.png",
+    url:      "https://certification.mettl.com/datastax/applicant/result/download-certificate?key=QnJmoboWskcL4U1NjxgiSg%3D%3D",
+  },
+  {
+    group:    "Data & Databases",
+    name:     "Apache Kafka Fundamentals Accreditation",
+    issuer:   "Confluent",
+    date:     "Issued Sep 2021 · Does not expire",
+    icon:     "files/icons/kafka.png",
+    url:      "https://www.credential.net/686b43cc-211b-43e3-a1ce-e06cdfc5951e",
+  },
+  {
+    group:    "Data & Databases",
+    name:     "CompTIA Data+",
+    issuer:   "CompTIA",
+    date:     "Issued Jun 2021 · Expires Jun 2024",
+    icon:     "files/icons/comptia_data.png",
+    url:      "https://www.credly.com/badges/acfeb3c4-1fd2-409e-ab5e-4a2c6ca2ae0f",
+  },
+  {
+    group:    "Data & Databases",
+    name:     "Database Associate",
+    issuer:   "Exasol",
+    date:     "Issued Jul 2020 · Does not expire",
+    icon:     "files/icons/exasol.png",
+    url:      "https://cmkr.co/pdf/downloads/?certificate_id=39859&sid=45392436&nrg_id=714206&test_id=1178459&aid=5587741&utype=SD&cert_token=868955b8ec8e3aefcde1fb96b5581d6a&tprtoken=3T9M",
+  },
+  {
+    group:    "Data & Databases",
+    name:     "Certified Professional",
+    issuer:   "ArangoDB",
+    date:     "Issued Sep 2020 · Does not expire",
+    icon:     "files/icons/arangodb.jpg",
+    url:      "https://cmkr.co/pdf/downloads/?certificate_id=41174&sid=46974200&nrg_id=737496&test_id=1207231&aid=7122326&utype=SD&cert_token=f478c0b2a3e05444ebd39d299d2d4310&tprtoken=7N9J",
+  },
+  {
+    group:    "Data & Databases",
+    name:     "YugabyteDB Associate",
+    issuer:   "YugabyteDB",
+    date:     "Issued Oct 2020 · Does not expire",
+    icon:     "files/icons/YB-Fundamentals-Badge.png",
+  },
+  {
+    group:    "Data & Databases",
+    name:     "Oracle Certified Java Programmer (OCJP) 6",
+    issuer:   "Oracle",
+    date:     "Issued Dec 2009 · Does not expire",
+    icon:     "files/icons/OCJP.png",
+    url:      "https://drive.google.com/file/d/1kmlKsWpPTNAPJT8bBu45OnDkp2OCyh-p/view?usp=sharing",
+  },
+
+  // ── DevOps & CI/CD ────────────────────────────
+  {
+    group:    "DevOps & CI/CD",
+    name:     "DevOps Leader (DOL)®",
+    issuer:   "DevOps Institute",
+    date:     "Issued Aug 2021 · Does not expire",
+    icon:     "files/icons/DevOpsLeader.jpg",
+  },
+  {
+    group:    "DevOps & CI/CD",
+    name:     "DevSecOps Foundation (DSOF)",
+    issuer:   "DevOps Institute",
+    date:     "Issued Jun 2021 · Does not expire",
+    icon:     "files/icons/DevOps_DevSecOpsFoundation.JPG",
+  },
+  {
+    group:    "DevOps & CI/CD",
+    name:     "Terraform Associate",
+    issuer:   "HashiCorp",
+    date:     "Issued Sep 2020 · Expires May 2023",
+    icon:     "files/icons/Terraform-Associate-Badge.png",
+    url:      "https://www.youracclaim.com/badges/3210c4d7-cc51-4818-ad73-c4d69aed64fa/public_url",
+  },
+  {
+    group:    "DevOps & CI/CD",
+    name:     "Certified Jenkins Engineer 2021",
+    issuer:   "CloudBees",
+    date:     "Issued Feb 2021 · Does not expire",
+    icon:     "files/icons/cje.PNG",
+    url:      "https://certificates.cloudbees.com/503c24b0-9a50-4972-af83-7c519cebfea3",
+  },
+  {
+    group:    "DevOps & CI/CD",
+    name:     "GitLab Certified Associate",
+    issuer:   "GitLab",
+    date:     "Issued Jun 2021 · Does not expire",
+    icon:     "files/icons/gitlab_associate.png",
+    url:      "https://badgr.com/public/assertions/hm2FspmmTFaUORZLwdJgzw",
+  },
+  {
+    group:    "DevOps & CI/CD",
+    name:     "GitOps Fundamentals",
+    issuer:   "Linux Foundation",
+    date:     "Issued Jun 2021 · Does not expire",
+    icon:     "files/icons/gitops.png",
+    url:      "https://www.credly.com/badges/9c08af05-3852-46f6-b110-5db91ea7a88d",
+  },
+  {
+    group:    "DevOps & CI/CD",
+    name:     "DevOps Associate",
+    issuer:   "Juniper Networks",
+    date:     "Issued Jun 2020 · Expires Jun 2023",
+    icon:     "files/icons/JNCIA-DevOps.png",
+    url:      "https://www.youracclaim.com/badges/9bad42a9-84e6-45fc-8387-17fec8e83319/linked_in_profile",
+  },
+  {
+    group:    "DevOps & CI/CD",
+    name:     "Advanced RPA Professional",
+    issuer:   "Automation Anywhere",
+    date:     "Issued May 2020 · Does not expire",
+    icon:     "files/icons/automation_anywhere.jpg",
+    url:      "https://certificates.automationanywhere.com/f3342ae4-c46f-45e9-ab27-b7d16c2ec7f2#gs.9gccno",
+  },
+  {
+    group:    "DevOps & CI/CD",
+    name:     "Chaos Engineering Practitioner",
+    issuer:   "Gremlin",
+    date:     "Issued Jun 2021 · Does not expire",
+    icon:     "files/icons/gremlin.png",
+    url:      "https://www.credential.net/8a7fff18-19f0-4f8f-8712-aad05a2a344f",
+  },
+
+  // ── Security & Networking ─────────────────────
+  {
+    group:    "Security & Networking",
+    name:     "Certified Trustee",
+    issuer:   "CyberArk",
+    date:     "Issued Jun 2020 · Does not expire",
+    icon:     "files/icons/cyberarka.png",
+    url:      "https://training.cyberark.com/award/certification/4500de5e-d34c-382f-8f9d-d3594919f1da/view",
+  },
+  {
+    group:    "Security & Networking",
+    name:     "Network Security Associate 1",
+    issuer:   "Fortinet",
+    date:     "Issued Jun 2020 · Expires Jun 2022",
+    icon:     "files/icons/nse_1.png",
+    url:      "https://training.fortinet.com/mod/customcert/verify_certificate.php?contextid=251439&code=Vdt1TIndTw&qrcode=1",
+  },
+  {
+    group:    "Security & Networking",
+    name:     "Network Security Associate 2",
+    issuer:   "Fortinet",
+    date:     "Issued Jun 2020 · Expires Jun 2022",
+    icon:     "files/icons/nse_2.png",
+    url:      "https://training.fortinet.com/mod/customcert/verify_certificate.php?contextid=251440&code=Un8VFOcEmS&qrcode=1",
+  },
+  {
+    group:    "Security & Networking",
+    name:     "Istio Foundation",
+    issuer:   "Solo",
+    date:     "Issued Jun 2021 · Expires Jun 2023",
+    icon:     "files/icons/istio.png",
+    url:      "https://www.credly.com/badges/1931adc8-47aa-4d85-be43-9d643612745f",
+  },
+  {
+    group:    "Security & Networking",
+    name:     "Istio Essentials",
+    issuer:   "Solo",
+    date:     "Issued Jul 2021 · Expires Jul 2023",
+    icon:     "files/icons/istio_essential.png",
+    url:      "https://www.credly.com/badges/60f52683-2594-4bb5-9d91-9b8e37f1658f",
+  },
+  {
+    group:    "Security & Networking",
+    name:     "Multicloud Engineer",
+    issuer:   "Aviatrix",
+    date:     "Issued Jun 2020 · Expires Jun 2023",
+    icon:     "files/icons/aceAssociatetBadgeArtboard_1.png",
+    url:      "https://www.youracclaim.com/badges/967d8152-f178-4092-acd6-d44f025618f9/public_url",
+  },
+
+  // ── Other Cloud Providers ─────────────────────
+  {
+    group:    "Other Cloud Providers",
+    name:     "Cloud Computing",
+    issuer:   "Alibaba Cloud",
+    date:     "Issued Jun 2020 · Expires Jun 2022",
+    icon:     "files/icons/img_a0b579ad84e95418d2fc0167d2f01993.png",
+    url:      "https://edu.alibabacloud.com/pearson/downloadCertificate?spm=a2c4d.11423077.0.0.510c12dbFyd8oO&url=https%3A%2F%2Fxuecdn2.aliyunedu.net%2Fimg_7d1f9c71b51bece77ca9a304b6c47618.png",
+  },
+  {
+    group:    "Other Cloud Providers",
+    name:     "Cloud Security",
+    issuer:   "Alibaba Cloud",
+    date:     "Issued Jun 2020 · Expires Jun 2022",
+    icon:     "files/icons/img_96d13068d8b68fe04e89fc346642159a.png",
+    url:      "https://edu.alibabacloud.com/pearson/downloadCertificate?spm=a2c4d.11423077.0.0.510c12dbFyd8oO&url=https%3A%2F%2Fxuecdn2.aliyunedu.net%2Fimg_077a7f18bc060f235c55350b695b8929.png",
+  },
+  {
+    group:    "Other Cloud Providers",
+    name:     "Cloud Native",
+    issuer:   "Alibaba Cloud",
+    date:     "Issued Jul 2020 · Expires Jul 2022",
+    icon:     "files/icons/img_58934741f4840d2b9c8705375bdb7360.png",
+    url:      "https://edu.alibabacloud.com/pearson/downloadCertificate?spm=a2c4d.11423077.0.0.510c12dbFyd8oO&url=https%3A%2F%2Fxuecdn2.aliyunedu.net%2Fimg_aa5d4190c9f6e62a075e56592556f682.png",
+  },
+  {
+    group:    "Other Cloud Providers",
+    name:     "Cloud AI Associate",
+    issuer:   "Huawei",
+    date:     "Issued Aug 2020 · Expires Aug 2023",
+    icon:     "files/icons/HCIE-Intelligent_Computing_Badge.png",
+  },
+  {
+    group:    "Other Cloud Providers",
+    name:     "Cloud Service Associate",
+    issuer:   "Huawei",
+    date:     "Issued Aug 2020 · Expires Aug 2023",
+    icon:     "files/icons/Huawei_Badge_Visuals1009-_-09.png",
+  },
+  {
+    group:    "Other Cloud Providers",
+    name:     "Cloud Computing Associate",
+    issuer:   "Huawei",
+    date:     "Issued Oct 2020 · Expires Oct 2023",
+    icon:     "files/icons/Huawei_Badge_Visuals1009-03.png",
+  },
+
+  // ── Finance & Business ────────────────────────
+  {
+    group:    "Finance & Business",
+    name:     "FinOps Certified Practitioner",
+    issuer:   "The Linux Foundation",
+    date:     "Issued Jun 2023 · Expires Jun 2025",
+    icon:     "files/icons/FinOps.png",
+    url:      "https://www.credly.com/earner/earned/badge/87e525f5-2e39-4b22-a354-497a80f2ea3a",
+  },
+  {
+    group:    "Finance & Business",
+    name:     "Salesforce Certified Associate",
+    issuer:   "Salesforce",
+    date:     "Issued Jun 2023 · Does not expire",
+    icon:     "files/icons/salesforce.png",
+    url:      "https://trailblazer.me/id/supratipbanerjee",
+  },
+
+  // ── Observability & SRE ───────────────────────
+  {
+    group:    "Observability & SRE",
+    name:     "Incident Responder",
+    issuer:   "PagerDuty",
+    date:     "Issued Sep 2020 · Does not expire",
+    icon:     "files/icons/pd_1.png",
+    url:      "https://verify.skilljar.com/c/hjumnnopgkig",
+  },
+  {
+    group:    "Observability & SRE",
+    name:     "Foundational Practitioner",
+    issuer:   "PagerDuty",
+    date:     "Issued Sep 2020 · Does not expire",
+    icon:     "files/icons/pd_2.png",
+    url:      "https://verify.skilljar.com/c/ba9u6fns6wdp",
+  },
+  {
+    group:    "Observability & SRE",
+    name:     "PagerDuty API Certification",
+    issuer:   "PagerDuty",
+    date:     "Issued Sep 2021 · Does not expire",
+    icon:     "files/icons/PagerDutyAPISpecialtyBadge.png",
+    url:      "https://www.credly.com/badges/43ab2792-1749-461d-bbe5-f64b17d24e6f",
+  },
+  {
+    group:    "Observability & SRE",
+    name:     "Google Analytics for Beginners",
+    issuer:   "Google",
+    date:     "Issued Aug 2020 · Expires Aug 2023",
+    icon:     "files/icons/google analytics.png",
+    url:      "https://analytics.google.com/analytics/academy/certificate/GZmRTLxSTSOQuSi8GEOddQ",
+  },
+
+  // ── Architecture & APIs ───────────────────────
+  {
+    group:    "Architecture & APIs",
+    name:     "Principles of Reactive Architecture",
+    issuer:   "IBM",
+    date:     "Issued Aug 2021 · Does not expire",
+    icon:     "files/icons/ibm.png",
+    url:      "https://www.credly.com/badges/52a2ece5-e048-4e3f-bf1f-4480a20a8aff",
+  },
+  {
+    group:    "Architecture & APIs",
+    name:     "API Designer",
+    issuer:   "API Academy",
+    date:     "Issued Aug 2020 · Does not expire",
+    icon:     "files/icons/Badge-Designer.png",
+  },
+  {
+    group:    "Architecture & APIs",
+    name:     "API Security Architect",
+    issuer:   "API Academy",
+    date:     "Issued Sep 2020 · Does not expire",
+    icon:     "files/icons/Badge-SecArch.png",
+  },
+
+  // ── Agile & Project Management ────────────────
+  {
+    group:    "Agile & Project Management",
+    name:     "Kanban Associate",
+    issuer:   "International Scrum Institute",
+    date:     "Issued Aug 2020 · Does not expire",
+    icon:     "files/icons/KANASC.png",
+    url:      "https://www.scrum-institute.org/badges/56364437283016",
+  },
+  {
+    group:    "Agile & Project Management",
+    name:     "Scrum Associate",
+    issuer:   "International Scrum Institute",
+    date:     "Issued Aug 2020 · Does not expire",
+    icon:     "files/icons/SAAC.png",
+    url:      "https://www.scrum-institute.org/badges/47203799339942",
+  },
+  {
+    group:    "Agile & Project Management",
+    name:     "Scrum Foundation",
+    issuer:   "CertiProf",
+    date:     "Issued Aug 2020 · Does not expire",
+    icon:     "files/icons/CertiProf-Badge-SFPC.png",
+    url:      "https://www.youracclaim.com/badges/eabe61d3-d91f-4486-8558-428aff232878",
+  },
+  {
+    group:    "Agile & Project Management",
+    name:     "Kanban Foundation KIKF™",
+    issuer:   "CertiProf",
+    date:     "Issued Nov 2020 · Expires Nov 2022",
+    icon:     "files/icons/kikf.png",
+    url:      "https://www.credly.com/badges/1db7e4de-5ed5-45e0-aa0e-dfb70799f11e",
+  },
+  {
+    group:    "Agile & Project Management",
+    name:     "Jira Fundamental Certified",
+    issuer:   "Atlassian",
+    date:     "Issued Jul 2020 · Does not expire",
+    icon:     "files/icons/jira.png",
+    url:      "https://university.atlassian.com/student/award/3aTu8i1AiqAeJDtxcpQV5WXz",
+  },
+
+  // ── IT Fundamentals ───────────────────────────
+  {
+    group:    "IT Fundamentals",
+    name:     "IT Fundamentals (ITF+) Certification",
+    issuer:   "CompTIA",
+    date:     "Issued Jun 2021 · Does not expire",
+    icon:     "files/icons/comptia_it.png",
+    url:      "https://www.credly.com/badges/a11ff535-04d1-49db-9926-409ef3153ce8",
+  },
+];
+
+// ─────────────────────────────────────────────
+//  RENDERER
+// ─────────────────────────────────────────────
+
+function certCard(cert, delay) {
+  const link = cert.url
+    ? `<a class="cert-link" href="${cert.url}" target="_blank" rel="noopener">
+         <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:9px"></i> See credential
+       </a>`
+    : '';
+  return `
+    <article class="cert-card" data-group="${cert.group}" style="animation-delay:${delay}ms">
+      <img class="cert-badge" src="${cert.icon}" alt="${cert.name} badge" loading="lazy" />
+      <div class="cert-info">
+        <div class="cert-name">${cert.name}</div>
+        <div class="cert-issuer">${cert.issuer}</div>
+        <div class="cert-date">${cert.date}</div>
+        ${link}
+      </div>
+    </article>`;
+}
+
+function render(filter) {
+  const board = document.getElementById('certBoard');
+  const countEl = document.getElementById('certCount');
+
+  // Group certs
+  const groups = {};
+  let visibleCount = 0;
+  CERTIFICATIONS.forEach(cert => {
+    const match = filter === 'all' || cert.group === filter;
+    if (!match) return;
+    if (!groups[cert.group]) groups[cert.group] = [];
+    groups[cert.group].push(cert);
+    visibleCount++;
+  });
+
+  let html = '';
+  let globalDelay = 0;
+  Object.entries(groups).forEach(([group, certs]) => {
+    html += `<section class="cert-group">
+      <div class="group-label">${group}</div>
+      <div class="cert-grid">`;
+    certs.forEach(cert => {
+      html += certCard(cert, globalDelay);
+      globalDelay += 30;
+    });
+    html += `</div></section>`;
+  });
+
+  board.innerHTML = html;
+  countEl.innerHTML = `Showing <span>${visibleCount}</span> of <span>${CERTIFICATIONS.length}</span> certifications`;
+}
+
+function buildFilters() {
+  const groups = ['all', ...new Set(CERTIFICATIONS.map(c => c.group))];
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = groups.map(g =>
+    `<button class="filter-btn${g === 'all' ? ' active' : ''}" data-filter="${g}">
+      ${g === 'all' ? 'All' : g}
+     </button>`
+  ).join('');
+
+  bar.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render(btn.dataset.filter);
+  });
+}
+
+// Hamburger
+document.getElementById('hamburgerBtn').addEventListener('click', function () {
+  const nav = document.getElementById('mobileNav');
+  const open = nav.classList.toggle('open');
+  this.setAttribute('aria-expanded', open);
+});
+
+// Init
+document.getElementById('year').textContent = new Date().getFullYear();
+buildFilters();
+render('all');
+</script>
 
-	
- <header class="header">
-	<div class="container" >                       
-	    <img class="profile-image img-responsive pull-left" src="assets/images/profile.png" alt="" />
-	    <div class="profile-content pull-left">
-		<h1 class="name">Supratip Banerjee</h1>
-		<h2 class="desc">Solutions Architect</h2>   
-		<ul class="social list-inline">
-		    <li><a href="https://www.linkedin.com/in/supratipb/" target="_blank"><i class="fa fa-linkedin"></i></a></li>                   
-		    <!--li><a href="#"><i class="fa fa-google-plus"></i></a></li-->
-		    <li><a href="https://twitter.com/supratip" target="_blank""><i class="fa fa-twitter"></i></a></li>
-		    <!--li><a href="#"><i class="fa fa-github-alt"></i></a></li-->                  
-		    <!--li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li-->                 
-		</ul> 
-
-	    </div>
-
-	    <div class="flex pull-right">
-				<!--form method="get" action="index.html"><button class="btn" type="submit">About</button></form>&nbsp;&nbsp;-->
-				<form method="get" action="index.html">	<button class="btn" type="submit">Certification</button></form>&nbsp;&nbsp;
-				<form method="get" action="comm.html">	<button class="btn" type="submit">Community</button></form>&nbsp;&nbsp;
-				<form method="get" action="publication.html">	<button class="btn" type="submit">Publication</button></form>&nbsp;&nbsp;
-			    	<form method="get" action="speaker.html">	<button class="btn" type="submit">Speaker</button></form>&nbsp;&nbsp;
-				<form method="get" action="blog.html">	<button class="btn" type="submit">Blog</button></form>&nbsp;&nbsp;
-			</div>
-
-	    <!--a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i> Contact Me</a-->              
-	</div>
-    </header>
-
-
-
-
-
-
-
-	<!-- Google Tag Manager (noscript) -->
-	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPLRVV4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-	<!-- End Google Tag Manager (noscript) -->
-
-
-	<!-- MAIN (Center website) -->
-	<div class="main">
-
-	
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-		<br>
-		
-
-
-	<div id="s">
-	
-	
-	
-	<div class="widgets_div">
-		
-
-		
-			<div class="icon_div">
-				<img src="files/icons/badge-togaf9-certified.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>TOGAF® 9 Enterprise Architect</b></span><br>
-				<span class="small_text">The Open Group</span><br>
-				<span class="small_text">Issued July 2022 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/f1764332-112d-4f16-8c98-4be421d226bd/public_url" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/AWS-SAA.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>AWS Solution Architect Associate</b></span><br>
-				<span class="small_text">AWS</span><br>
-				<span class="small_text">Issued July 2021 . Expires July 2024</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/b4375235-f129-4890-9c0c-b09c08839ea4/public_url" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/AWS-CCP.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>AWS Certified Cloud Practitioner</b></span><br>
-				<span class="small_text">AWS</span><br>
-				<span class="small_text">Issued Dec 2021 . Expires Dec 2024</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/e8d7f4d4-dd72-45f3-a681-f335eac40e01/public_url" target="_blank">See credential</a></span>
-
-			</div>
-		
-
-		</div>
-		
-		
-		
-		
-		<div class="widgets_div">
-		
-
-                        <div class="icon_div">
-				<img src="files/icons/AWS-AI.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>AWS Certified AI Practitioner</b></span><br>
-				<span class="small_text">AWS</span><br>
-				<span class="small_text">Issued Oct 2024 . Expires Sept 2027</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/c25d90f9-f6d4-453d-84b1-312b0d201ccb/public_url" target="_blank">See credential</a></span>
-
-			</div>
-
-			
-			<div class="icon_div">
-				<img src="files/icons/GCP-1.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Cloud Digital Leader Certification</b></span><br>
-				<span class="small_text">Google Cloud</span><br>
-				<span class="small_text">Issued Aug 2025 . Expires Aug 2028</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/a7252afd-5c4a-4453-a5bd-bfdf3b3d029f/public_url" target="_blank">See credential</a></span>
-				
-			</div>		
-	
-		
-					
-			<div class="icon_div">
-				<img src="files/icons/GCP-2.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>Generative AI Leader Certification</b></span><br>
-				<span class="small_text">Google Cloud</span><br>
-				<span class="small_text">Issued Sep 2025 . Expires Sep 2028</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/e71ea2f8-2547-45b3-b65a-51e35a32581b" target="_blank">See credential</a></span>
-
-			</div>
-		
-
-		</div>
-			    
-			    
-			    
-
-
-
-
-		
-		<div class="widgets_div">
-		
-
-            <div class="icon_div">
-				<img src="files/icons/Snowflake-platform.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>SnowPro Associate: Platform Certification</b></span><br>
-				<span class="small_text">SnowPro</span><br>
-				<span class="small_text">Issued June 2025 . Expires June 2027</span><br><br>
-				<span class="small_text"><a href="https://achieve.snowflake.com/46137dcc-de6b-46ba-a65b-fc788c1a7ec6#acc.j36cAe57" target="_blank">See credential</a></span>
-
-			</div>
-
-			
-			<div class="icon_div">
-				<img src="files/icons/Cassandra Admin Certification Badge 1_0.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Apache Cassandra 3 Administrator Associate</b></span><br>
-				<span class="small_text">Datastax</span><br>
-				<span class="small_text">Issued Dec 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://certification.mettl.com/datastax/applicant/result/download-certificate?key=QnJmoboWskcL4U1NjxgiSg%3D%3D" target="_blank">See credential</a></span>
-				
-			</div>		
-	
-		
-					
-			<div class="icon_div">
-				<img src="files/icons/Terraform-Associate-Badge.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>Terraform Associate</b></span><br>
-				<span class="small_text">Hashicorp</span><br>
-				<span class="small_text">Issued Sept 2020 . Expires May 2023</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/3210c4d7-cc51-4818-ad73-c4d69aed64fa/public_url" target="_blank">See credential</a></span>
-
-			</div>
-		
-
-		</div>
-			    
-
-
-
-		
-			    
-			    
-			    
-		
-		
-		
-		<div class="widgets_div">
-		
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/salesforce.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Salesforce Certified Associate</b></span><br>
-				<span class="small_text">Salesforce</span><br>
-				<span class="small_text">Issued June 2023 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://trailblazer.me/id/supratipbanerjee" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/FinOps.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>FinOps Certified Practitioner</b></span><br>
-				<span class="small_text">The Linux Foundation</span><br>
-				<span class="small_text">Issued June 2023 . Expires June 2025</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/earner/earned/badge/87e525f5-2e39-4b22-a354-497a80f2ea3a" target="_blank">See credential</a></span>
-
-			</div>
-
-			<div class="icon_div">
-				<img src="files/icons/comptia_data.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>CompTIA Data+</b></span><br>
-				<span class="small_text">CompTIA</span><br>
-				<span class="small_text">Issued June 2021 . Expires June 2024</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/acfeb3c4-1fd2-409e-ab5e-4a2c6ca2ae0f" target="_blank">See credential</a></span>
-			</div>	
-			
-			
-					
-		</div>
-			    
-				    
-			    
-			    
-			    
-			    
-		
-		
-				
-		
-		<div class="widgets_div">
-		
-			<div class="icon_div">
-				<img src="files/icons/automation_anywhere.jpg" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Advanced RPA Professional</b></span><br>
-				<span class="small_text">Automation Anywhere</span><br>
-				<span class="small_text">Issued May 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://certificates.automationanywhere.com/f3342ae4-c46f-45e9-ab27-b7d16c2ec7f2#gs.9gccno" target="_blank">See credential</a></span>
-				
-			</div>
-		
-			<div class="icon_div">
-				<img src="files/icons/cje.PNG" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>Certified Jenkins Engineer 2021</b></span><br>
-				<span class="small_text">CloudBees </span><br>
-				<span class="small_text">Issued Feb 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://certificates.cloudbees.com/503c24b0-9a50-4972-af83-7c519cebfea3" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/gitlab_associate.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>GitLab Certified Associate</b></span><br>
-				<span class="small_text">GitLab </span><br>
-				<span class="small_text">Issued June 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://badgr.com/public/assertions/hm2FspmmTFaUORZLwdJgzw" target="_blank">See credential</a></span>
-
-			</div>	
-			
-		</div>
-		
-		
-		
-	
-
-
-		<div class="widgets_div" id="demo">
-		
-			<div class="icon_div" >
-				<img src="files/icons/azure-fundamentals-600x600.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Azure Fundamentals</b></span><br>
-				<span class="small_text">Microsoft</span><br>
-				<span class="small_text">Issued Aug 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/e6585be0-647a-49d8-bc56-71aed9bec9f9/public_url" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/azure-data-fundamentals-600x600.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Azure Data Fundamentals</b></span><br>
-				<span class="small_text">Microsoft</span><br>
-				<span class="small_text">Issued Aug 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/67b1e427-f95a-47b1-a8e7-87347dea6a30/public_url" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/azure-ai-fundamentals-600x600.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Azure AI Fundamentals</b></span><br>
-				<span class="small_text">Microsoft</span><br>
-				<span class="small_text">Issued Jan 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/872db661-a6a7-49b8-8f0f-ee12c9236679" target="_blank">See credential</a></span>
-
-			</div>		
-			
-		</div>
-		
-		
-		
-		
-		
-		<div class="widgets_div" id="demo">
-			<div class="icon_div" >
-				<img src="files/icons/sc-900.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Security, Compliance, and Identity Fundamentals</b></span><br>
-				<span class="small_text">Microsoft</span><br>
-				<span class="small_text">Issued Aug 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/6b16e2ae-c4d6-4407-aef1-10ab078755ec/public_url" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/pl-900.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Power Platform Fundamentals</b></span><br>
-				<span class="small_text">Microsoft</span><br>
-				<span class="small_text">Issued Aug 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/30c4a7bd-c053-4768-8d59-e6aedbf9748b/public_url" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/aceAssociatetBadgeArtboard_1.png" style="width:60%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Multicloud Engineer</b></span><br>
-				<span class="small_text">Aviatrix</span><br>
-				<span class="small_text">Issued June 2020 . Expires June 2023</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/967d8152-f178-4092-acd6-d44f025618f9/public_url" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-			
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<div class="widgets_div">
-		
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/OCJP.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Oracle Certified Java Programmer (OCJP) 6</b></span><br>
-				<span class="small_text">Oracle</span><br>
-				<span class="small_text">Issued Dec 2009 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://drive.google.com/file/d/1kmlKsWpPTNAPJT8bBu45OnDkp2OCyh-p/view?usp=sharing" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/kafka.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Apache Kafka Fundamentals Accreditation</b></span><br>
-				<span class="small_text">Confluent</span><br>
-				<span class="small_text">Issued Sept 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credential.net/686b43cc-211b-43e3-a1ce-e06cdfc5951e" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/comptia_it.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>IT Fundamentals (ITF+) Certification</b></span><br>
-				<span class="small_text">CompTIA</span><br>
-				<span class="small_text">Issued June 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/a11ff535-04d1-49db-9926-409ef3153ce8" target="_blank">See credential</a></span>
-
-			</div>
-			
-					
-		</div>
-			    
-			    
-			    
-			    
-			    
-			    
-		    
-			    
-			    
-		
-		
-		
-		
-		<div class="widgets_div">
-
-		
-			<div class="icon_div">
-				<img src="files/icons/03_Oracle_Cloud_Infrastructure_Foundations_Associate.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Cloud Foundation</b></span><br>
-				<span class="small_text">Oracle</span><br>
-				<span class="small_text">Issued Sept 2020 . Expires Feb 2022</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/7f321214-523d-4d34-899b-f417f16be906" target="_blank">See credential</a></span>
-
-			</div>
-			<div class="icon_div" >
-				<img src="files/icons/03_Oracle-Cloud_Infrastructure_Developer_Associate.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Cloud Developer</b></span><br>
-				<span class="small_text">Oracle</span><br>
-				<span class="small_text">Issued July 2020 . Expires Jan 2022</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/ece4eade-75c4-4a79-bc59-f8a65e5c4800" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/09_Associate_OCI_Cloud_Operations_2019.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Cloud Operations</b></span><br>
-				<span class="small_text">Oracle</span><br>
-				<span class="small_text">Issued Aug 2020 . Expires Feb 2022</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/e8651951-21ac-40a1-bafb-e8392d80a8cb" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-		</div>
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-
-		<div class="widgets_div">
-			<div class="icon_div">
-				<img src="files/icons/08_Associate_OCI_Architect_2019.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Cloud Architect Associate</b></span><br>
-				<span class="small_text">Oracle</span><br>
-				<span class="small_text">Issued Aug 2020 . Expires Aug 2022</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/90efd3c3-0464-4467-a087-53d0139e6f5b" target="_blank">See credential</a></span>
-
-			</div>
-			<div class="icon_div" >
-				<img src="files/icons/Oracle-Certification-badge_OC-Specialist.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Autonomous Database Specialist</b></span><br>
-				<span class="small_text">Oracle</span><br>
-				<span class="small_text">Issued Aug 2020 . Expires Feb 2022</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/b2242261-db23-401e-8776-1fe04fdf2d33" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/11_OCI_Architect_Professional_2019.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Cloud Architect Professional</b></span><br>
-				<span class="small_text">Oracle</span><br>
-				<span class="small_text">Issued Aug 2020 . Expires Feb 2022</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/587c93e4-7229-43bc-a71d-a22ae8548859" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-
-			
-				
-		
-		
-		
-		
-		
-		
-		<div class="widgets_div">
-			
-				
-				
-			<div class="icon_div">
-			<img src="files/icons/DevOpsLeader.jpg" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>DevOps Leader (DOL)®</b></span><br>
-				<span class="small_text">DevOps Institute</span><br>
-				<span class="small_text">Issued August 2021 . Does not expire</span><br><br>
-				
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/DevOps_DevSecOpsFoundation.JPG" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>DevSecOps Foundation (DSOF)</b></span><br>
-				<span class="small_text">DevOps Institute</span><br>
-				<span class="small_text">Issued June 2021 . Does not expire</span><br><br>
-				
-			</div>
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/WellArch-Proficient.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">	
-				<span><b>AWS Well-Architected Proficient</b></span><br>
-				<span class="small_text">AWS</span><br>
-				<span class="small_text">Issued June 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/53fac167-1245-4cd1-9f7b-a61b356fbd37" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-			
-			
-					
-		</div>
-		
-		
-		
-		
-
-		<div class="widgets_div">
-			<div class="icon_div" >
-				<img src="files/icons/img_a0b579ad84e95418d2fc0167d2f01993.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Cloud Computing</b></span><br>
-				<span class="small_text">Alibaba Cloud</span><br>
-				<span class="small_text">Issued June 2020 . Expires June 2022</span><br><br>
-				<span class="small_text"><a href="https://edu.alibabacloud.com/pearson/downloadCertificate?spm=a2c4d.11423077.0.0.510c12dbFyd8oO&url=https%3A%2F%2Fxuecdn2.aliyunedu.net%2Fimg_7d1f9c71b51bece77ca9a304b6c47618.png" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/img_96d13068d8b68fe04e89fc346642159a.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Cloud Security</b></span><br>
-				<span class="small_text">Alibaba Cloud</span><br>
-				<span class="small_text">Issued June 2020 . Expires June 2022</span><br><br>
-				<span class="small_text"><a href="https://edu.alibabacloud.com/pearson/downloadCertificate?spm=a2c4d.11423077.0.0.510c12dbFyd8oO&url=https%3A%2F%2Fxuecdn2.aliyunedu.net%2Fimg_077a7f18bc060f235c55350b695b8929.png" target="_blank">See credential</a></span>
-
-
-			</div>
-			<div class="icon_div">
-				<img src="files/icons/img_58934741f4840d2b9c8705375bdb7360.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Cloud Native</b></span><br>
-				<span class="small_text">Alibaba Cloud</span><br>
-				<span class="small_text">Issued July 2020 . Expires July 2022</span><br><br>
-				<span class="small_text"><a href="https://edu.alibabacloud.com/pearson/downloadCertificate?spm=a2c4d.11423077.0.0.510c12dbFyd8oO&url=https%3A%2F%2Fxuecdn2.aliyunedu.net%2Fimg_aa5d4190c9f6e62a075e56592556f682.png" target="_blank">See credential</a></span>
-
-
-			</div>
-			
-		</div>
-	
-
-		<div class="widgets_div">
-			<div class="icon_div" >
-				<img src="files/icons/HCIE-Intelligent_Computing_Badge.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Cloud AI Associate</b></span><br>
-				<span class="small_text">Huawei</span><br>
-				<span class="small_text">Issued Aug 2020 . Expires Aug 2023</span><br><br>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/Huawei_Badge_Visuals1009-_-09.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Cloud Service Associate</b></span><br>
-				<span class="small_text">Huawei</span><br>
-				<span class="small_text">Issued Aug 2020 . Expires Aug 2023</span><br><br>
-
-			</div>
-			<div class="icon_div">
-				<img src="files/icons/Huawei_Badge_Visuals1009-03.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Cloud Computing Associate</b></span><br>
-				<span class="small_text">Huawei</span><br>
-				<span class="small_text">Issued Oct 2020 . Expires Oct 2023</span><br><br>
-
-			</div>
-			
-		</div>
-		
-		
-
-		<div class="widgets_div">
-		
-			<div class="icon_div">
-				<img src="files/icons/google analytics.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Google Analytics for Beginners</b></span><br>
-				<span class="small_text">Google</span><br>
-				<span class="small_text">Issued Aug 2020 . Expires Aug 2023</span><br><br>
-				<span class="small_text"><a href="https://analytics.google.com/analytics/academy/certificate/GZmRTLxSTSOQuSi8GEOddQ" target="_blank">See credential</a></span>
-			</div>
-		
-			<div class="icon_div" >
-				<img src="files/icons/gremlin.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Chaos Engineering Practitioner</b></span><br>
-				<span class="small_text">Gremlin</span><br>
-				<span class="small_text">Issued June 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credential.net/8a7fff18-19f0-4f8f-8712-aad05a2a344f" target="_blank">See credential</a></span>
-
-			</div>
-						
-			
-			
-			
-			<div class="icon_div" >
-				<img src="files/icons/gitops.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>GitOps Fundamentals</b></span><br>
-				<span class="small_text">Linux Foundation</span><br>
-				<span class="small_text">Issued June 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/9c08af05-3852-46f6-b110-5db91ea7a88d" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-			
-		</div>
-		
-		
-
-		<div class="widgets_div">
-		
-		
-			<div class="icon_div" >
-				<img src="files/icons/nse_1.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Network Security Associate 1</b></span><br>
-				<span class="small_text">Fortinet</span><br>
-				<span class="small_text">Issued June 2020 . Expires June 2022</span><br><br>
-				<span class="small_text"><a href="https://training.fortinet.com/mod/customcert/verify_certificate.php?contextid=251439&code=Vdt1TIndTw&qrcode=1" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/nse_2.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Network Security Associate 2</b></span><br>
-				<span class="small_text">Fortinet</span><br>
-				<span class="small_text">Issued June 2020 . Expires June 2022</span><br><br>
-				<span class="small_text"><a href="https://training.fortinet.com/mod/customcert/verify_certificate.php?contextid=251440&code=Un8VFOcEmS&qrcode=1" target="_blank">See credential</a></span>
-
-			</div>
-			<div class="icon_div">
-				<img src="files/icons/JNCIA-DevOps.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>DevOps Associate</b></span><br>
-				<span class="small_text">Juniper Networks</span><br>
-				<span class="small_text">Issued June 2020 . Expires June 2023</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/9bad42a9-84e6-45fc-8387-17fec8e83319/linked_in_profile" target="_blank">See credential</a></span>
-			</div>
-			
-		</div>
-		
-		
-
-		<div class="widgets_div">
-			
-			<div class="icon_div" >
-				<img src="files/icons/cyberarka.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Certified Trustee</b></span><br>
-				<span class="small_text">CyberArk</span><br>
-				<span class="small_text">Issued June 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://training.cyberark.com/award/certification/4500de5e-d34c-382f-8f9d-d3594919f1da/view" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/istio.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Istio Foundation</b></span><br>
-				<span class="small_text">Solo</span><br>
-				<span class="small_text">Issued June 2021 . Expires June 2023</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/1931adc8-47aa-4d85-be43-9d643612745f" target="_blank">See credential</a></span>
-
-			</div>	
-			
-			<div class="icon_div">
-				<img src="files/icons/istio_essential.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Istio Essentials</b></span><br>
-				<span class="small_text">Solo</span><br>
-				<span class="small_text">Issued July 2021 . Expires July 2023</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/60f52683-2594-4bb5-9d91-9b8e37f1658f" target="_blank">See credential</a></span>
-
-			</div>
-		</div>
-		
-		
-		
-		
-		
-		<div class="widgets_div">
-			<div class="icon_div" >
-				<img src="files/icons/exasol.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Database Associate</b></span><br>
-				<span class="small_text">Exasol</span><br>
-				<span class="small_text">Issued July 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://cmkr.co/pdf/downloads/?certificate_id=39859&sid=45392436&nrg_id=714206&test_id=1178459&aid=5587741&utype=SD&cert_token=868955b8ec8e3aefcde1fb96b5581d6a&tprtoken=3T9M" target="_blank">See credential</a></span>
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/arangodb.jpg" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Certified Professional</b></span><br>
-				<span class="small_text">ArangoDB</span><br>
-				<span class="small_text">Issued Sept 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://cmkr.co/pdf/downloads/?certificate_id=41174&sid=46974200&nrg_id=737496&test_id=1207231&aid=7122326&utype=SD&cert_token=f478c0b2a3e05444ebd39d299d2d4310&tprtoken=7N9J" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div" >
-				<img src="files/icons/YB-Fundamentals-Badge.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>YugabyteDB Associate</b></span><br>
-				<span class="small_text">YugabyteDB</span><br>
-				<span class="small_text">Issued Oct 2020 . Does not expire</span><br><br>
-
-			</div>
-			
-			
-		</div>
-		
-		
-		
-		<div class="widgets_div">
-			<div class="icon_div" >
-				<img src="files/icons/pd_1.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Incident Responder</b></span><br>
-				<span class="small_text">PagerDuty</span><br>
-				<span class="small_text">Issued Sept 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://verify.skilljar.com/c/hjumnnopgkig" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/pd_2.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Foundational Practitioner</b></span><br>
-				<span class="small_text">PagerDuty</span><br>
-				<span class="small_text">Issued Sept 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://verify.skilljar.com/c/ba9u6fns6wdp" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/PagerDutyAPISpecialtyBadge.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>PagerDuty API Certification</b></span><br>
-				<span class="small_text">PagerDuty</span><br>
-				<span class="small_text">Issued Sept 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/43ab2792-1749-461d-bbe5-f64b17d24e6f" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-								
-		</div>
-
-
-
-		
-				
-		
-		
-		<div class="widgets_div">
-			<div class="icon_div" >
-				<img src="files/icons/aws-tech.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>AWS Partner: Accreditation (Technical)</b></span><br>
-				<span class="small_text">AWS</span><br>
-				<span class="small_text">Issued Aug 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/6c1dd820-81ef-4b50-87d5-953350f7d5e5" target="_blank">See credential</a></span>
-
-			</div>		
-			
-			
-			<div class="icon_div">
-				<img src="files/icons/aws_business.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>AWS Partner: Accreditation (Business)</b></span><br>
-				<span class="small_text">AWS</span><br>
-				<span class="small_text">Issued Sept 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/earner/earned/badge/a90f4ef2-b040-4fd0-9f70-bfb49ee5e0ef" target="_blank">See credential</a></span>
-
-			</div>
-			    
-			    
-			<div class="icon_div" >
-				<img src="files/icons/aws-eco.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>AWS Partner: Cloud Economics Accreditation</b></span><br>
-				<span class="small_text">AWS</span><br>
-				<span class="small_text">Issued Sept 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/earner/earned/badge/57d0a0e5-fdab-499b-818c-9af00addb789" target="_blank">See credential</a></span>
-
-			</div>
-		</div>	
-		
-			    
-
-		
-		
-		
-		
-
-		<div class="widgets_div">
-			<div class="icon_div" >
-				<img src="files/icons/Badge-Designer.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>API Designer</b></span><br>
-				<span class="small_text">API Academy</span><br>
-				<span class="small_text">Issued Aug 2020 . Does not expire</span><br><br>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/Badge-SecArch.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>API Security Architect</b></span><br>
-				<span class="small_text">API Academy</span><br>
-				<span class="small_text">Issued Sept 2020 . Does not expire</span><br><br>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/jira.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Jira Fundamental Certified</b></span><br>
-				<span class="small_text">Atlassian</span><br>
-				<span class="small_text">Issued July 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://university.atlassian.com/student/award/3aTu8i1AiqAeJDtxcpQV5WXz?referer=https%3A%2F%2Funiversity.atlassian.com%2Fstudent%2Fpath%2F815443%2Factivity%2F1080730" target="_blank">See credential</a></span>
-
-			</div>
-			
-			
-					
-			
-		</div>
-
-		
-		
-		
-		
-		
-		<div class="widgets_div">
-			<div class="icon_div" >
-				<img src="files/icons/KANASC.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Kanban Associate</b></span><br>
-				<span class="small_text">International Scrum Institute</span><br>
-				<span class="small_text">Issued Aug 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.scrum-institute.org/badges/56364437283016" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/SAAC.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Scrum Associate</b></span><br>
-				<span class="small_text">International Scrum Institute</span><br>
-				<span class="small_text">Issued Aug 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.scrum-institute.org/badges/47203799339942" target="_blank">See credential</a></span>
-
-			</div>
-			
-			<div class="icon_div">
-				<img src="files/icons/CertiProf-Badge-SFPC.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Scrum Foundation</b></span><br>
-				<span class="small_text">CertiProf</span><br>
-				<span class="small_text">Issued Aug 2020 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.youracclaim.com/badges/eabe61d3-d91f-4486-8558-428aff232878" target="_blank">See credential</a></span>
-
-			</div>	
-			
-		</div>
-		
-			
-			
-		<div class="widgets_div">
-			<div class="icon_div" >
-				<img src="files/icons/kikf.png" style="width:50%;"/>
-			</div>
-			<div class="text_div">
-				<span><b>Kanban Foundation KIKF™</b></span><br>
-				<span class="small_text">CertiProf</span><br>
-				<span class="small_text">Issued Nov 2020 . Expires Nov 2022</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/1db7e4de-5ed5-45e0-aa0e-dfb70799f11e" target="_blank">See credential</a></span>
-
-			</div>
-
-			<div class="icon_div">
-				<img src="files/icons/ibm.png" style="width:50%"/>
-			</div>
-			
-			<div class="text_div">
-				<span><b>Principles of Reactive Architecture</b></span><br>
-				<span class="small_text">IBM</span><br>
-				<span class="small_text">Issued Aug 2021 . Does not expire</span><br><br>
-				<span class="small_text"><a href="https://www.credly.com/badges/52a2ece5-e048-4e3f-bf1f-4480a20a8aff" target="_blank">See credential</a></span>
-
-			</div>
-			
-			    
-			
-			
-			
-			
-			
-		</div>
-		
-		
-		
-		
-			<!-- END GRID -->
-		</div> <img
-			src="https://hitwebcounter.com/counter/counter.php?page=7542486&style=0008&nbdigits=4&type=page&initCount=0"
-			title="Web Counter" Alt="counter free" border="0">
-		<!-- END MAIN -->
-	</div>
-	<script>
-	
-		function multiplyNode(node, count, deep) {
-
-			const fs = require('fs') 
-			console.log('hhhhhhhhhhhhhhhhhhhhh'	); 
-			fs.readFile('data.txt', 'utf-8', (err, data) => { 
-				if (err) throw err; 
-				console.log(data); 
-			}) 
-			
-			for (var i = 0, copy; i < count - 1; i++) {
-				copy = node.cloneNode(deep);
-				node.parentNode.insertBefore(copy, node);
-			}
-		}
-
-		multiplyNode(document.getElementById("demo"), 1, true);	
-		filterSelection("all")
-
-		function filterSelection(c) {
-			var x, i;
-			x = document.getElementsByClassName("column");
-			if (c == "all") c = "";
-			for (i = 0; i < x.length; i++) {
-				w3RemoveClass(x[i], "show");
-				if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-			}
-		}
-
-		function w3AddClass(element, name) {
-			var i, arr1, arr2;
-			arr1 = element.className.split(" ");
-			arr2 = name.split(" ");
-			for (i = 0; i < arr2.length; i++) {
-				if (arr1.indexOf(arr2[i]) == -1) {
-					element.className += " " + arr2[i];
-				}
-			}
-		}
-
-		function w3RemoveClass(element, name) {
-			var i, arr1, arr2;
-			arr1 = element.className.split(" ");
-			arr2 = name.split(" ");
-			for (i = 0; i < arr2.length; i++) {
-				while (arr1.indexOf(arr2[i]) > -1) {
-					arr1.splice(arr1.indexOf(arr2[i]), 1);
-				}
-			}
-			element.className = arr1.join(" ");
-		}
-		// Add active class to the current button (highlight it)
-		var btnContainer = document.getElementById("myBtnContainer");
-		var btns = btnContainer.getElementsByClassName("btn");
-		for (var i = 0; i < btns.length; i++) {
-			btns[i].addEventListener("click", function () {
-				var current = document.getElementsByClassName("active");
-				current[0].className = current[0].className.replace(" active", "");
-				this.className += " active";
-			});
-		}
-	</script>
 </body>
-
 </html>
