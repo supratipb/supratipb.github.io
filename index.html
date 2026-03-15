@@ -109,32 +109,23 @@
     }
     .hero-inner {
       max-width: var(--max-w); margin: 0 auto; padding: 0 28px;
-      position: relative; display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
-    }
-    .hero-avatar-wrap { position: relative; flex-shrink: 0; }
-    .hero-avatar-wrap::before {
-      content: ''; position: absolute; inset: -4px; border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-    }
-    .hero-avatar {
-      width: 88px; height: 88px; border-radius: 50%; object-fit: cover;
-      border: 3px solid rgba(255,255,255,0.5); position: relative; z-index: 1;
+      position: relative; display: flex; align-items: flex-end;
+      justify-content: space-between; gap: 24px; flex-wrap: wrap;
     }
     .hero-text { flex: 1; min-width: 220px; }
     .hero-eyebrow { font-size: 11px; font-family: var(--font-mono); color: rgba(255,255,255,0.6); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
-    .hero-name { font-size: 30px; font-weight: 700; color: #fff; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 4px; }
-    .hero-role { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 8px; font-weight: 500; }
-    .hero-intro { font-size: 13.5px; color: rgba(255,255,255,0.62); max-width: 540px; line-height: 1.65; }
+    .hero-title { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 8px; }
+    .hero-intro { font-size: 13.5px; color: rgba(255,255,255,0.65); max-width: 560px; line-height: 1.65; }
     .hero-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
     .hero-badge {
       font-size: 11px; font-family: var(--font-mono); padding: 4px 12px;
       border-radius: 20px; border: 1px solid rgba(255,255,255,0.25);
       background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);
     }
-    .hero-stats { display: flex; gap: 28px; flex-wrap: wrap; flex-shrink: 0; }
+    .hero-stats { display: flex; gap: 24px; flex-wrap: wrap; flex-shrink: 0; }
     .stat-item { text-align: center; }
-    .stat-number { font-size: 28px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.02em; }
-    .stat-label { font-size: 10.5px; color: rgba(255,255,255,0.5); font-family: var(--font-mono); letter-spacing: 0.06em; margin-top: 3px; text-transform: uppercase; }
+    .stat-number { font-size: 26px; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.02em; }
+    .stat-label { font-size: 10.5px; color: rgba(255,255,255,0.55); font-family: var(--font-mono); letter-spacing: 0.05em; margin-top: 3px; text-transform: uppercase; }
 
     /* ══ MAIN ══ */
     .main { padding: 40px 0 80px; }
@@ -233,6 +224,126 @@
     .community-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
     .community-text strong { color: var(--text-primary); }
 
+    /* ══ VERTICAL GRAPHICAL TIMELINE ══ */
+    .vtl { position: relative; padding-left: 32px; }
+
+    /* continuous spine */
+    .vtl::before {
+      content: ''; position: absolute; left: 11px; top: 6px; bottom: 6px;
+      width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--purple) 100%);
+      border-radius: 2px;
+    }
+
+    .vtl-item {
+      position: relative; margin-bottom: 0;
+      animation: fadeUp 0.35s ease both;
+    }
+
+    /* Connector line from dot down to next item */
+    .vtl-item + .vtl-item { margin-top: 0; }
+
+    /* Dot on spine */
+    .vtl-dot {
+      position: absolute; left: -26px; top: 18px;
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2.5px solid #fff;
+      box-shadow: 0 0 0 2px var(--border);
+      z-index: 1; flex-shrink: 0;
+    }
+    .vtl-dot.current {
+      box-shadow: 0 0 0 3px rgba(59,110,248,0.3);
+      animation: pulseRing 2s infinite;
+    }
+    @keyframes pulseRing {
+      0%,100% { box-shadow: 0 0 0 3px rgba(59,110,248,0.3); }
+      50%      { box-shadow: 0 0 0 6px rgba(59,110,248,0.1); }
+    }
+
+    /* Card */
+    .vtl-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+    }
+    .vtl-card:hover {
+      border-color: rgba(59,110,248,0.3);
+      box-shadow: var(--shadow-hover);
+      transform: translateX(3px);
+    }
+
+    /* Coloured accent bar on left of card */
+    .vtl-card-inner {
+      display: flex;
+    }
+    .vtl-accent {
+      width: 4px; flex-shrink: 0; border-radius: 0;
+    }
+    .vtl-card-body { padding: 16px 18px; flex: 1; }
+
+    /* Header row */
+    .vtl-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 12px;
+      margin-bottom: 6px; flex-wrap: wrap;
+    }
+    .vtl-company {
+      font-size: 15px; font-weight: 700; color: var(--text-primary);
+      letter-spacing: -0.01em; line-height: 1.2;
+    }
+    .vtl-period {
+      font-size: 11px; font-family: var(--font-mono);
+      color: var(--text-muted); white-space: nowrap;
+      background: var(--surface-2); border: 1px solid var(--border);
+      padding: 3px 9px; border-radius: 20px; flex-shrink: 0;
+    }
+
+    /* Role + domain row */
+    .vtl-meta {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 10px; flex-wrap: wrap;
+    }
+    .vtl-role {
+      font-size: 12.5px; font-weight: 600;
+    }
+    .vtl-domain {
+      font-size: 11px; font-family: var(--font-mono);
+      color: var(--text-muted); background: var(--surface-2);
+      border: 1px solid var(--border); padding: 2px 8px;
+      border-radius: 20px;
+    }
+    .vtl-duration {
+      font-size: 11px; font-family: var(--font-mono);
+      color: var(--text-muted); margin-left: auto;
+    }
+
+    /* Bullets */
+    .vtl-bullets { display: flex; flex-direction: column; gap: 5px; }
+    .vtl-bullets li {
+      font-size: 13px; color: var(--text-secondary);
+      display: flex; gap: 8px; line-height: 1.55; list-style: none;
+    }
+    .vtl-bullets li::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--text-muted); flex-shrink: 0; margin-top: 7px;
+    }
+
+    /* Year marker */
+    .vtl-year-marker {
+      position: relative; left: -32px; width: calc(100% + 32px);
+      margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+    }
+    .vtl-year-pill {
+      font-size: 10px; font-family: var(--font-mono); font-weight: 600;
+      color: var(--text-muted); background: var(--surface-3);
+      border: 1px solid var(--border); padding: 2px 10px;
+      border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+      margin-left: 32px;
+    }
+    .vtl-year-line { flex: 1; height: 1px; background: var(--border); }
+
     /* ══ FOOTER ══ */
     .site-footer { border-top: 1px solid var(--border); padding: 28px; text-align: center; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); background: var(--surface); }
 
@@ -245,13 +356,12 @@
       .site-nav { display: none; }
       .hamburger { display: flex; }
       .hero-strip { padding: 28px 0; }
-      .hero-name { font-size: 24px; }
+      .hero-title { font-size: 22px; }
       .hero-stats { gap: 16px; }
       .container { padding: 0 20px; }
     }
     @media (max-width: 520px) {
-      .hero-inner { flex-direction: column; }
-      .hero-avatar { width: 68px; height: 68px; }
+      .hero-inner { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -265,12 +375,11 @@
     </div>
     <div class="profile-info">
       <div class="profile-name">Supratip Banerjee</div>
-      <div class="profile-title">Principal Architect · CitiusTech &nbsp;</div>
+      <div class="profile-title">Principal Architect · CitiusTech &nbsp;|&nbsp; 18 yrs · Cloud, Microservices, DDD</div>
     </div>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/supratipb/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://medium.com/@supratip-banerjee" target="_blank" aria-label="Medium"><i class="fab fa-medium"></i></a>
-      <a href="https://dev.to/supratipb" target="_blank" aria-label="dev.to"><i class="fab fa-dev"></i></a>
+      <a href="https://twitter.com/supratip" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
     </div>
     <nav class="site-nav" aria-label="Main navigation">
       <a href="index.html" class="nav-link active">About</a>
@@ -285,8 +394,8 @@
     </button>
   </div>
   <nav class="mobile-nav" id="mobileNav">
-    <a href="about.html" class="nav-link active">About</a>
-    <a href="index.html" class="nav-link">Certifications</a>
+    <a href="index.html" class="nav-link active">About</a>
+    <a href="cert.html" class="nav-link">Certifications</a>
     <a href="comm.html" class="nav-link">Community</a>
     <a href="publication.html" class="nav-link">Publications</a>
     <a href="speaker.html" class="nav-link">Speaker</a>
@@ -297,20 +406,10 @@
 <!-- ── Hero ── -->
 <div class="hero-strip">
   <div class="hero-inner">
-    <div class="hero-avatar-wrap">
-      <img class="hero-avatar" src="assets/images/profile.png" alt="Supratip Banerjee" />
-    </div>
     <div class="hero-text">
-      <div class="hero-eyebrow">Principal Architect · Healthcare · Pune, India</div>
-      <h1 class="hero-name">Supratip Banerjee</h1>
-      <div class="hero-role">Currently at CitiusTech &nbsp;·&nbsp; 18 Years of Experience</div>
+      <div class="hero-eyebrow">Principal Architect · CitiusTech · Pune, India</div>
+      <h1 class="hero-title">About</h1>
       <div class="hero-intro">Driving digital transformation, cloud migration, and application modernisation across healthcare, telecom, and BFSI — from architecture design to hands-on delivery.</div>
-      <div class="hero-badges">
-        <span class="hero-badge">AWS Community Builder</span>
-        <span class="hero-badge">DevOps Institute Ambassador</span>
-        <span class="hero-badge">TOGAF Certified</span>
-        <span class="hero-badge">60+ Certifications</span>
-      </div>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
@@ -318,7 +417,7 @@
         <div class="stat-label">Years Exp.</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">4</div>
+        <div class="stat-number">7</div>
         <div class="stat-label">Companies</div>
       </div>
       <div class="stat-item">
@@ -356,122 +455,14 @@
           </div>
         </div>
 
-        <!-- Experience -->
+        <!-- Experience Timeline -->
         <div class="section-card">
           <div class="section-head">
             <div class="section-icon"><i class="fa-solid fa-briefcase"></i></div>
             <div class="section-title">Work Experience</div>
           </div>
-          <div class="section-body">
-            <div class="timeline">
-
-              <div class="timeline-item">
-                <div class="timeline-left">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-line"></div>
-                </div>
-                <div class="timeline-content">
-                  <div class="timeline-header">
-                    <div class="timeline-company">CitiusTech</div>
-                    <div class="timeline-period">Jan 2025 – Present</div>
-                  </div>
-                  <div class="timeline-role-row">
-                    <span class="timeline-role">Principal Architect</span>
-                    <span class="timeline-domain">Healthcare</span>
-                  </div>
-                  <ul class="timeline-bullets">
-                    <li>Architecting cloud-native solutions for enterprise healthcare applications focused on Medical Imaging, FHIR, and DICOM interoperability.</li>
-                    <li>Driving legacy modernisation using Microservices and Event-Driven Architecture, ensuring scalability, compliance, and security.</li>
-                    <li>Providing hands-on guidance on application, data, DevOps and DevSecOps practices.</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-left">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-line"></div>
-                </div>
-                <div class="timeline-content">
-                  <div class="timeline-header">
-                    <div class="timeline-company">EXFO</div>
-                    <div class="timeline-period">Nov 2023 – Dec 2024</div>
-                  </div>
-                  <div class="timeline-role-row">
-                    <span class="timeline-role">Sr. Architect</span>
-                    <span class="timeline-domain">Telecommunications</span>
-                  </div>
-                  <ul class="timeline-bullets">
-                    <li>Led digital transformation and cloud migration to AWS, improving system scalability and performance.</li>
-                    <li>Decomposed complex applications into Microservices, created conceptual, system, deployment, security, HLD and LLD diagrams.</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-left">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-line"></div>
-                </div>
-                <div class="timeline-content">
-                  <div class="timeline-header">
-                    <div class="timeline-company">Principal Global Services</div>
-                    <div class="timeline-period">Jun 2019 – Nov 2023</div>
-                  </div>
-                  <div class="timeline-role-row">
-                    <span class="timeline-role">Solutions Architect</span>
-                    <span class="timeline-domain">BFSI</span>
-                  </div>
-                  <ul class="timeline-bullets">
-                    <li>Drove digital transformation, cloud adoption, and hyper-automation for enterprise BFSI applications.</li>
-                    <li>Designed scalable Microservices using DDD and EDA; architected full-stack solutions (Java, Spring, TypeScript, ReactJS) and migrated to AWS.</li>
-                    <li>Established DevSecOps and CI/CD pipelines with Terraform IaC across AWS, Azure, and GCP.</li>
-                    <li>Championed Dojo culture, security best practices, and full lifecycle ownership.</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-left">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-line"></div>
-                </div>
-                <div class="timeline-content">
-                  <div class="timeline-header">
-                    <div class="timeline-company">Tata Consultancy Services</div>
-                    <div class="timeline-period">Jul 2012 – May 2019</div>
-                  </div>
-                  <div class="timeline-role-row">
-                    <span class="timeline-role">Technical Architect</span>
-                    <span class="timeline-domain">Retail · Market Research</span>
-                  </div>
-                  <ul class="timeline-bullets">
-                    <li>Technical anchor for cross-functional Agile teams; designed and developed applications using Java, ReactJS, AngularJS, PostgreSQL.</li>
-                    <li>Onsite Technical Architect at Nielsen, Pennsylvania, USA (Jun 2014 – Oct 2016) — managed cross-functional client and vendor teams.</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-left">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-line"></div>
-                </div>
-                <div class="timeline-content">
-                  <div class="timeline-header">
-                    <div class="timeline-company">Earlier Roles</div>
-                    <div class="timeline-period">2007 – 2012</div>
-                  </div>
-                  <div class="timeline-role-row">
-                    <span class="timeline-role">Tech Lead / Sr. Analyst / Developer</span>
-                  </div>
-                  <ul class="timeline-bullets">
-                    <li>Decos Software · Atos Syntel · SecurView Systems — Java, J2EE, Spring, Hibernate, PostgreSQL. Built reporting portals, reverse-engineered legacy systems, and established full DevOps ecosystems from scratch.</li>
-                  </ul>
-                </div>
-              </div>
-
-            </div>
+          <div class="section-body" style="padding: 24px;">
+            <div class="vtl" id="vtlContainer"></div>
           </div>
         </div>
 
@@ -599,7 +590,7 @@
               <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
               <div>
                 <div class="info-label">Email</div>
-                <div class="info-value"><a href="mailto:supratip.banerjee@yahoo.in">supratip.banerjee@yahoo.in</a></div>
+                <div class="info-value"><a href="/cdn-cgi/l/email-protection#99eaece9ebf8edf0e9b7fbf8f7fcebf3fcfcd9e0f8f1f6f6b7f0f7"><span class="__cf_email__" data-cfemail="651610151704110c154b07040b00170f0000251c040d0a0a4b0c0b">[email&#160;protected]</span></a></div>
               </div>
             </div>
             <div class="info-row">
@@ -707,13 +698,137 @@
   &copy; <span id="year"></span> Supratip Banerjee &nbsp;·&nbsp; Principal Architect · CitiusTech
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('hamburgerBtn').addEventListener('click', function () {
     const nav = document.getElementById('mobileNav');
-    const open = nav.classList.toggle('open');
-    this.setAttribute('aria-expanded', open);
+    this.setAttribute('aria-expanded', nav.classList.toggle('open'));
   });
-</script>
+
+  // ── VERTICAL GRAPHICAL TIMELINE ──────────────────────────────
+  const JOBS = [
+    {
+      company: "CitiusTech",
+      role:    "Principal Architect",
+      domain:  "Healthcare",
+      period:  "Jan 2025 – Present",
+      duration:"~1 yr",
+      color:   "#3b6ef8",
+      current: true,
+      bullets: [
+        "Architecting cloud-native solutions for enterprise healthcare apps focused on Medical Imaging, FHIR, and DICOM interoperability.",
+        "Driving legacy modernisation using Microservices and Event-Driven Architecture — scalability, compliance, security.",
+        "Hands-on guidance on application, data, DevOps and DevSecOps practices.",
+      ],
+    },
+    {
+      company: "EXFO",
+      role:    "Sr. Architect",
+      domain:  "Telecom",
+      period:  "Nov 2023 – Dec 2024",
+      duration:"~1 yr",
+      color:   "#7c3aed",
+      bullets: [
+        "Led digital transformation and cloud migration to AWS — improved scalability and performance.",
+        "Decomposed monoliths into Microservices; produced conceptual, system, deployment, security, HLD and LLD diagrams.",
+      ],
+    },
+    {
+      company: "Principal Global Services",
+      role:    "Solutions Architect",
+      domain:  "BFSI",
+      period:  "Jun 2019 – Nov 2023",
+      duration:"4.5 yrs",
+      color:   "#0891b2",
+      bullets: [
+        "Drove digital transformation, cloud adoption and hyper-automation for enterprise BFSI applications.",
+        "Designed scalable Microservices using DDD & EDA; architected full-stack solutions (Java, Spring, TypeScript, ReactJS) migrated to AWS.",
+        "Established DevSecOps and CI/CD pipelines with Terraform IaC across AWS, Azure and GCP.",
+        "Championed Dojo culture, security best practices and full lifecycle ownership.",
+      ],
+    },
+    {
+      company: "Tata Consultancy Services",
+      role:    "Technical Architect",
+      domain:  "Retail · Market Research",
+      period:  "Jul 2012 – May 2019",
+      duration:"~7 yrs",
+      color:   "#059669",
+      bullets: [
+        "Technical anchor for cross-functional Agile teams; designed and developed apps using Java, ReactJS, AngularJS, PostgreSQL.",
+        "Onsite Technical Architect at Nielsen, Pennsylvania, USA (Jun 2014 – Oct 2016) — managed cross-functional client & vendor teams.",
+      ],
+    },
+    {
+      company: "Decos Software",
+      role:    "Technical Lead",
+      domain:  "Software Dev",
+      period:  "Dec 2011 – Jul 2012",
+      duration:"~8 mo",
+      color:   "#d97706",
+      bullets: [
+        "Built reporting portal using Java, Hibernate, Spring, jQuery and SQL Server.",
+        "Complex database query development, fine-tuning and client management.",
+      ],
+    },
+    {
+      company: "Atos Syntel",
+      role:    "Sr. Analyst Programmer",
+      domain:  "Healthcare",
+      period:  "Mar 2010 – Dec 2011",
+      duration:"~2 yrs",
+      color:   "#dc2626",
+      bullets: [
+        "Reverse-engineered legacy Java/J2EE code; created pseudo code, use cases and flow diagrams.",
+        "Authored coding standards document approved and appreciated by client.",
+      ],
+    },
+    {
+      company: "SecurView Systems",
+      role:    "Software Developer",
+      domain:  "Security",
+      period:  "Jun 2007 – Feb 2010",
+      duration:"~3 yrs",
+      color:   "#64748b",
+      bullets: [
+        "Full-cycle product development using Java, J2EE, Echo2, Hibernate and PostgreSQL.",
+        "Single-handedly built a cross-module search engine and full DevOps ecosystem (CVS, Maven, Ant, CI/CD) from scratch.",
+      ],
+    },
+  ];
+
+  function buildTimeline() {
+    const container = document.getElementById('vtlContainer');
+    let html = '';
+    JOBS.forEach((j, i) => {
+      const delay = i * 60;
+      html += `
+        <div class="vtl-item" style="animation-delay:${delay}ms">
+          <div class="vtl-dot${j.current ? ' current' : ''}" style="background:${j.color}"></div>
+          <div class="vtl-card">
+            <div class="vtl-card-inner">
+              <div class="vtl-accent" style="background:${j.color}"></div>
+              <div class="vtl-card-body">
+                <div class="vtl-header">
+                  <div class="vtl-company">${j.company}</div>
+                  <div class="vtl-period">${j.period}</div>
+                </div>
+                <div class="vtl-meta">
+                  <span class="vtl-role" style="color:${j.color}">${j.role}</span>
+                  <span class="vtl-domain">${j.domain}</span>
+                  <span class="vtl-duration">${j.duration}</span>
+                </div>
+                <ul class="vtl-bullets">
+                  ${j.bullets.map(b => `<li>${b}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    });
+    container.innerHTML = html;
+  }
+
+  buildTimeline();</script>
 </body>
 </html>
